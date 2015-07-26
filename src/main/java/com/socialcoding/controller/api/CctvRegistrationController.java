@@ -10,7 +10,7 @@ import java.util.Map;
 @RestController
 public class CctvRegistrationController {
     @RequestMapping(value = "/cctv/validate", method = RequestMethod.GET)
-    public Map<String, Object> validateNewCctv(Double latitude, Double longtitude) {
+    public Map<String, Object> validateNewCctv(Double latitude, Double longitude) {
         return Maps.newHashMap();
     }
 }
