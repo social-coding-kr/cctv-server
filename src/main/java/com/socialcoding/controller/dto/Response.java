@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.Date;
 
 public class Response {
-    public enum ResponseCode {
+    public enum ResponseStatus {
         SUCCESS,
         FAILURE
     }
