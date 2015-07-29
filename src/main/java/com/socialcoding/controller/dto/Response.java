@@ -15,6 +15,15 @@ public class Response {
 
     @Getter
     @Setter
+    public static class CctvOverviewDto {
+        private long cctvId;
+        private double latitude;
+        private double longitude;
+        private String color;
+    }
+
+    @Getter
+    @Setter
     public static class CctvDetailDto {
         private long cctvId;
         private int correctPoint;
