@@ -1,7 +1,7 @@
-package com.socialcoding.controllers.api;
+package com.socialcoding.interfaces.api;
 
 import com.google.common.collect.Lists;
-import com.socialcoding.controllers.dto.Response.CctvOverviewDto;
+import com.socialcoding.interfaces.dtos.Response.CctvOverviewDto;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.socialcoding.controllers.dto.Response.ResponseStatus.SUCCESS;
+import static com.socialcoding.interfaces.dtos.Response.ResponseStatus.SUCCESS;
 
 @RestController
 public class CctvMapController {

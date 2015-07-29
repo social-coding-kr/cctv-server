@@ -1,4 +1,4 @@
-package com.socialcoding.models;
+package com.socialcoding.domain.models;
 
 
 import lombok.Data;
