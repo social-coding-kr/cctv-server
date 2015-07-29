@@ -18,7 +18,7 @@ CREATE TABLE `cctv`.`reliabilities` (
   `cctvId` BIGINT NOT NULL COMMENT '',
   `userId` VARCHAR(45) NOT NULL COMMENT '',
   `reliable` TINYINT(1) NOT NULL COMMENT '',
-  `createdAt` DATETIME NOT NULL COMMENT '',
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
   PRIMARY KEY (`reliabilityId`)  COMMENT '',
   INDEX `cctvId_idx` (`cctvId` ASC)  COMMENT '',
   CONSTRAINT `fk_reliabilities_cctvs`
@@ -35,7 +35,7 @@ CREATE TABLE `cctv`.`comments` (
   `cctvId` BIGINT NOT NULL COMMENT '',
   `userId` VARCHAR(45) NOT NULL COMMENT '',
   `contents` VARCHAR(512) NOT NULL COMMENT '',
-  `createdAt` DATETIME NOT NULL COMMENT '',
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
   PRIMARY KEY (`commentId`)  COMMENT '',
   INDEX `fk_cctvId_idx` (`cctvId` ASC)  COMMENT '',
   CONSTRAINT `fk_comments_cctvs`
