@@ -24,8 +24,9 @@ public class Cctv {
     @Column(name = "tileName", nullable = false)
     private String tileName;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "purpose", nullable = false)
-    private CctvPurpose purpose; //TODO enum management
+    private CctvPurpose purpose;
 
     @Column(name = "address", nullable = true)
     private String address;
@@ -36,6 +37,7 @@ public class Cctv {
     @Column(name = "noticeImage", nullable = true)
     private String noticeImage;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "source", nullable = false)
-    private CctvSource source; //TODO enum management
+    private CctvSource source;
 }

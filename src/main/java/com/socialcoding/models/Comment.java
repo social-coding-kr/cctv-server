@@ -24,6 +24,7 @@ public class Comment {
     @Column(name = "contents", nullable = false)
     private String contents;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdAt", nullable = false)
-    private Date createdAt; //TODO temporal settings
+    private Date createdAt;
 }

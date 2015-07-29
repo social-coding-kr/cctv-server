@@ -23,6 +23,7 @@ public class Reliability {
     @Column(name = "reliable", nullable = false)
     private Boolean isReliable;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdAt", nullable = false)
-    private Date createdAt; //TODO temporal setting
+    private Date createdAt;
 }
