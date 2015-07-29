@@ -5,6 +5,7 @@ import com.socialcoding.service.CctvPurpose;
 import com.socialcoding.service.CctvSource;
 import com.socialcoding.controller.dto.Response.CctvDetailDto;
 import com.socialcoding.controller.dto.Response.CommentDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 import static com.socialcoding.controller.dto.Response.ResponseStatus.SUCCESS;
 
+@Slf4j
 @RestController
 public class CctvDetailController {
     @RequestMapping(value = "/cctv/{cctvId}", method = RequestMethod.GET)
