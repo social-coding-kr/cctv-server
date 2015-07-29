@@ -15,6 +15,13 @@ public class Response {
 
     @Getter
     @Setter
+    public static class CctvValidationDto {
+        private long cctvId;
+        private String cctvImage;
+    }
+
+    @Getter
+    @Setter
     public static class CctvOverviewDto {
         private long cctvId;
         private double latitude;

@@ -1,8 +1,6 @@
 package com.socialcoding.controller.api;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.socialcoding.controller.dto.Response;
 import com.socialcoding.controller.dto.Response.CctvOverviewDto;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
