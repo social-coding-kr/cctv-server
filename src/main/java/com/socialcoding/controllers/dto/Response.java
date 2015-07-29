@@ -1,7 +1,7 @@
-package com.socialcoding.controller.dto;
+package com.socialcoding.controllers.dto;
 
-import com.socialcoding.service.CctvPurpose;
-import com.socialcoding.service.CctvSource;
+import com.socialcoding.services.CctvPurpose;
+import com.socialcoding.services.CctvSource;
 import lombok.Getter;
 import lombok.Setter;
 

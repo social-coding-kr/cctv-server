@@ -1,10 +1,10 @@
-package com.socialcoding.controller.api;
+package com.socialcoding.controllers.api;
 
 import com.google.common.collect.Lists;
-import com.socialcoding.service.CctvPurpose;
-import com.socialcoding.service.CctvSource;
-import com.socialcoding.controller.dto.Response.CctvDetailDto;
-import com.socialcoding.controller.dto.Response.CommentDto;
+import com.socialcoding.services.CctvPurpose;
+import com.socialcoding.services.CctvSource;
+import com.socialcoding.controllers.dto.Response.CctvDetailDto;
+import com.socialcoding.controllers.dto.Response.CommentDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.socialcoding.controller.dto.Response.ResponseStatus.SUCCESS;
+import static com.socialcoding.controllers.dto.Response.ResponseStatus.SUCCESS;
 
 @Slf4j
 @RestController

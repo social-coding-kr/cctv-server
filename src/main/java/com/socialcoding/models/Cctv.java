@@ -1,7 +1,7 @@
-package com.socialcoding.model;
+package com.socialcoding.models;
 
-import com.socialcoding.service.CctvPurpose;
-import com.socialcoding.service.CctvSource;
+import com.socialcoding.services.CctvPurpose;
+import com.socialcoding.services.CctvSource;
 import lombok.Data;
 
 import javax.persistence.*;

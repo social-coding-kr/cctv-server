@@ -1,4 +1,4 @@
-package com.socialcoding.service;
+package com.socialcoding.services;
 
 public enum CctvPurpose {
     TRAFFIC,
