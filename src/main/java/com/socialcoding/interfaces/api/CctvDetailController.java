@@ -4,8 +4,11 @@ import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.models.Comment;
 import com.socialcoding.domain.services.CctvService;
 import com.socialcoding.domain.services.CommentService;
+import com.socialcoding.domain.services.ReliabilityService;
+import com.socialcoding.domain.services.ReliablePoint;
 import com.socialcoding.interfaces.dtos.Response.CctvDetailDto;
 import com.socialcoding.interfaces.dtos.Response.CommentDto;
+import com.socialcoding.interfaces.dtos.Response.ReliabilityDto;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -32,6 +35,8 @@ public class CctvDetailController {
 	private CctvService cctvService;
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private ReliabilityService reliabilityService;
 
     @RequestMapping(value = "/cctv/{cctvId}", method = RequestMethod.GET)
     public Map<String, Object> getCctv(@PathVariable Long cctvId) {
@@ -61,4 +66,19 @@ public class CctvDetailController {
             }
         };
     }
+
+	@RequestMapping(value = "/cctv/{cctvId}/reliability")
+	public Map<String, Object> getReliabilities(@PathVariable Long cctvId) {
+		ReliablePoint reliablePoint = reliabilityService.getReliablePointByCctvId(cctvId);
+		ReliabilityDto reliabilityDto = MAPPER.map(reliablePoint, ReliabilityDto.class);
+
+		//TODO 현재 유저의 선택 정보 넘기기
+
+		return new HashMap<String, Object>() {
+			{
+				put("status", SUCCESS);
+				put("reliability", reliabilityDto);
+			}
+		};
+	}
 }

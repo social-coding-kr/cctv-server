@@ -33,8 +33,6 @@ public class Response {
     @Setter
     public static class CctvDetailDto {
         private long cctvId;
-        private int correctPoint;
-        private int incorrectPoint;
         private String address;
         private String cctvImage;
         private String noticeImage;
@@ -49,4 +47,12 @@ public class Response {
         private String contents;
         private Date createdAt;
     }
+
+	@Getter
+	@Setter
+	public static class ReliabilityDto {
+		private long correctPoint;
+		private long incorrectPoint;
+//		private Reliability reliability;
+	}
 }

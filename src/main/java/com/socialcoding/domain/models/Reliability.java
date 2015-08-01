@@ -20,7 +20,7 @@ public class Reliability {
     private String userId;
 
     @Column(name = "reliable", nullable = false)
-    private Boolean isReliable;
+    private Boolean reliable;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdAt", nullable = false)
