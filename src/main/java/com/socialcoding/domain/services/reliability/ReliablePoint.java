@@ -1,4 +1,4 @@
-package com.socialcoding.domain.services;
+package com.socialcoding.domain.services.reliability;
 
 import lombok.Getter;
 import lombok.Setter;

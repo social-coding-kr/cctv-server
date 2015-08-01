@@ -1,7 +1,7 @@
-package com.socialcoding.domain.services;
+package com.socialcoding.domain.services.reliability;
 
 import com.socialcoding.domain.models.Reliability;
-import com.socialcoding.domain.repositories.ReliabilityRepository;
+import com.socialcoding.domain.repositories.reliability.ReliabilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

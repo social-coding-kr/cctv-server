@@ -1,7 +1,7 @@
-package com.socialcoding.domain.services;
+package com.socialcoding.domain.services.cctv;
 
 import com.socialcoding.domain.models.Cctv;
-import com.socialcoding.domain.repositories.CctvRepository;
+import com.socialcoding.domain.repositories.cctv.CctvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

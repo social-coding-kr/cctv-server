@@ -2,10 +2,10 @@ package com.socialcoding.interfaces.api;
 
 import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.models.Comment;
-import com.socialcoding.domain.services.CctvService;
-import com.socialcoding.domain.services.CommentService;
-import com.socialcoding.domain.services.ReliabilityService;
-import com.socialcoding.domain.services.ReliablePoint;
+import com.socialcoding.domain.services.cctv.CctvService;
+import com.socialcoding.domain.services.comment.CommentService;
+import com.socialcoding.domain.services.reliability.ReliabilityService;
+import com.socialcoding.domain.services.reliability.ReliablePoint;
 import com.socialcoding.interfaces.dtos.Response.CctvDetailDto;
 import com.socialcoding.interfaces.dtos.Response.CommentDto;
 import com.socialcoding.interfaces.dtos.Response.ReliabilityDto;
@@ -44,6 +44,8 @@ public class CctvDetailController {
 
 		CctvDetailDto cctvDetailDto = MAPPER.map(cctv, CctvDetailDto.class);
 		List<CommentDto> commentDtos = MAPPER.map(cctv.getComments(), TYPE_COMMENT_DTO);
+
+		//TODO 신뢰도 돌려주기
 
         return new HashMap<String, Object>() {
             {

@@ -1,4 +1,4 @@
-package com.socialcoding.domain.repositories;
+package com.socialcoding.domain.repositories.cctv;
 
 import com.socialcoding.domain.models.Cctv;
 import org.springframework.data.jpa.repository.JpaRepository;

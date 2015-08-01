@@ -1,4 +1,4 @@
-package com.socialcoding.domain.repositories;
+package com.socialcoding.domain.repositories.reliability;
 
 import com.socialcoding.domain.models.QReliability;
 import com.socialcoding.domain.models.Reliability;

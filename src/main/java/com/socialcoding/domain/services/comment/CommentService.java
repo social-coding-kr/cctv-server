@@ -1,7 +1,7 @@
-package com.socialcoding.domain.services;
+package com.socialcoding.domain.services.comment;
 
 import com.socialcoding.domain.models.Comment;
-import com.socialcoding.domain.repositories.CommentRepository;
+import com.socialcoding.domain.repositories.comment.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.socialcoding.domain.models;
 
-import com.socialcoding.domain.CctvPurpose;
-import com.socialcoding.domain.CctvSource;
+import com.socialcoding.domain.services.cctv.CctvPurpose;
+import com.socialcoding.domain.services.cctv.CctvSource;
 import lombok.Data;
 import lombok.ToString;
 

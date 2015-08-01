@@ -1,4 +1,4 @@
-package com.socialcoding.domain;
+package com.socialcoding.domain.services.cctv;
 
 public enum CctvSource {
     GOVERNMENT,
