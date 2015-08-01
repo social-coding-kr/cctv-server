@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @ToString(exclude = "cctv")
 @Entity
-@Table(name = "reliabilities")
+@Table(name = "comments")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

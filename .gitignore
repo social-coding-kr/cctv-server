@@ -3,7 +3,7 @@
 *.ipr
 *.iws
 *.prefs
-*/src/generated/
+src/generated/*
 *~
 .classpath
 .gradle/
