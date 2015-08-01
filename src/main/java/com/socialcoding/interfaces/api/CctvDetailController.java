@@ -3,9 +3,11 @@ package com.socialcoding.interfaces.api;
 import com.google.common.collect.Lists;
 import com.socialcoding.domain.CctvPurpose;
 import com.socialcoding.domain.CctvSource;
+import com.socialcoding.domain.services.CctvDetailService;
 import com.socialcoding.interfaces.dtos.Response.CctvDetailDto;
 import com.socialcoding.interfaces.dtos.Response.CommentDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,8 +23,12 @@ import static com.socialcoding.interfaces.dtos.Response.ResponseStatus.SUCCESS;
 @Slf4j
 @RestController
 public class CctvDetailController {
+	@Autowired
+	private CctvDetailService cctvDetailService;
+
     @RequestMapping(value = "/cctv/{cctvId}", method = RequestMethod.GET)
     public Map<String, Object> getCctv(@PathVariable Long cctvId) {
+		
         CctvDetailDto cctvDetailDto = new CctvDetailDto();
         cctvDetailDto.setCctvId(10L);
         cctvDetailDto.setCorrectPoint(100);

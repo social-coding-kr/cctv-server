@@ -3,10 +3,13 @@ package com.socialcoding.domain.models;
 import com.socialcoding.domain.CctvPurpose;
 import com.socialcoding.domain.CctvSource;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
+@ToString(exclude = { "comments", "reliabilities" })
 @Entity
 @Table(name = "cctvs")
 public class Cctv {
@@ -40,4 +43,10 @@ public class Cctv {
     @Enumerated(EnumType.STRING)
     @Column(name = "source", nullable = false)
     private CctvSource source;
+
+	@OneToMany(mappedBy = "cctv", fetch = FetchType.LAZY)
+	private List<Comment> comments;
+
+	@OneToMany(mappedBy = "cctv", fetch = FetchType.LAZY)
+	private List<Reliability> reliabilities;
 }

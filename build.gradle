@@ -27,17 +27,8 @@ repositories {
     mavenCentral()
 }
 
-sourceSets {
-    generated {
-        java {
-            srcDirs = ['src/main/generated']
-        }
-    }
-}
-
 configurations {
     providedRuntime
-    querydslapt
 }
 
 dependencies {
@@ -45,47 +36,14 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("mysql:mysql-connector-java:5.1.36")
-    compile("com.querydsl:querydsl-jpa:4.0.2")
 
     compile("com.google.guava:guava:19.0-rc1")
     compile("org.projectlombok:lombok:1.16.4")
 
-    querydslapt("com.querydsl:querydsl-apt:4.0.2")
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
-    source = sourceSets.main.java
-    classpath = configurations.compile + configurations.querydslapt
-    options.compilerArgs = [
-            "-proc:only",
-            "-processor", "com.querydsl.apt.jpa.JPAAnnotationProcessor"
-    ]
-    destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
-}
-
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
-}
-
-compileJava {
-    dependsOn generateQueryDSL
-    source generateQueryDSL.destinationDir
-}
-
-compileGeneratedJava {
-    dependsOn generateQueryDSL
-    options.warnings = false
-    classpath += sourceSets.main.runtimeClasspath
-}
-
-clean {
-    delete sourceSets.generated.java.srcDirs
-}
-
-idea {
-    module {
-        sourceDirs += file('src/main/generated')
-    }
 }
