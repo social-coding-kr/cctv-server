@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 public class Response {
     public enum ResponseStatus {
@@ -42,7 +43,15 @@ public class Response {
 
     @Getter
     @Setter
+    public static class CommentBundleDto {
+        private long nextRequestCommentId;
+        private List<CommentDto> comments;
+    }
+
+    @Getter
+    @Setter
     public static class CommentDto {
+        private long commentId;
         private String userId;
         private String contents;
         private Date createdAt;

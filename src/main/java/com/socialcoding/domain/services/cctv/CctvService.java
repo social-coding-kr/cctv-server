@@ -11,6 +11,6 @@ public class CctvService {
 	private CctvRepository cctvRepository;
 
 	public Cctv getCctvDetailById(long cctvId) {
-		return cctvRepository.findOneWithComments(cctvId);
+		return cctvRepository.findWithReliability(cctvId);
 	}
 }

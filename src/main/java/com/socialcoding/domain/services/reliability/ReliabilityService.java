@@ -14,10 +14,14 @@ public class ReliabilityService {
 
 	public ReliablePoint getReliablePointByCctvId(Long cctvId) {
 		List<Reliability> reliabilities = reliabilityRepository.findByCctvId(cctvId);
+		return ReliablePoint.of(getCorrectPoint(reliabilities), getIncorrectPoint(reliabilities));
+	}
 
-		long correctPoint = reliabilities.stream().filter(point -> point.getReliable()).count();
-		long incorrectPoint = reliabilities.stream().filter(point -> !point.getReliable()).count();
+	public long getCorrectPoint(List<Reliability> reliabilities) {
+		return reliabilities.stream().filter(point -> point.getReliable()).count();
+	}
 
-		return ReliablePoint.of(correctPoint, incorrectPoint);
+	public long getIncorrectPoint(List<Reliability> reliabilities) {
+		return reliabilities.stream().filter(point -> !point.getReliable()).count();
 	}
 }
