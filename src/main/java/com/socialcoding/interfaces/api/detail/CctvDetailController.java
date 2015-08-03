@@ -1,4 +1,4 @@
-package com.socialcoding.interfaces.api;
+package com.socialcoding.interfaces.api.detail;
 
 import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.models.Comment;
@@ -61,35 +61,4 @@ public class CctvDetailController {
             }
         };
     }
-
-    @RequestMapping(value = "/cctv/{cctvId}/comments", method = RequestMethod.GET)
-    public Map<String, Object> getComments(@PathVariable Long cctvId, CommentLoadDto commentLoadDto) {
-		//TODO make request object
-		List<Comment> comments = commentService.getCommentsByCctvIdWithPagination(cctvId, commentLoadDto.getFromCommentId(), commentLoadDto.getSize());
-		CommentBundleDto commentBundleDto = new CommentBundleDto();
-		commentBundleDto.setNextRequestCommentId(commentService.getNextRequestCommentId(comments));
-		commentBundleDto.setComments(MAPPER.map(comments, TYPE_COMMENT_DTO));
-
-		return new HashMap<String, Object>() {
-            {
-                put("status", SUCCESS);
-                put("comments", commentBundleDto);
-            }
-        };
-    }
-
-	@RequestMapping(value = "/cctv/{cctvId}/reliability")
-	public Map<String, Object> getReliabilities(@PathVariable Long cctvId) {
-		ReliablePoint reliablePoint = reliabilityService.getReliablePointByCctvId(cctvId);
-		ReliabilityDto reliabilityDto = MAPPER.map(reliablePoint, ReliabilityDto.class);
-
-		//TODO 현재 유저의 선택 정보 넘기기
-
-		return new HashMap<String, Object>() {
-			{
-				put("status", SUCCESS);
-				put("reliability", reliabilityDto);
-			}
-		};
-	}
 }

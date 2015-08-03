@@ -1,4 +1,4 @@
-package com.socialcoding.interfaces.api;
+package com.socialcoding.interfaces.api.map;
 
 import com.google.common.collect.Lists;
 import com.socialcoding.interfaces.dtos.Response.CctvOverviewDto;
