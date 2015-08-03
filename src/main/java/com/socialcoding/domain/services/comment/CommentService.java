@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.socialcoding.Constants.DEFAULT_COMMENT_PAGE_SIZE;
+
 @Service
 public class CommentService {
-	private static final int DEFAULT_PAGE_SIZE = 10;
 	private static final int BEFORE_ONE_COMMENT = 1;
 	private static final long DEFAULT_LAST_COMMENT_ID = 0L;
 
@@ -18,20 +19,16 @@ public class CommentService {
 	private CommentRepository commentRepository;
 
 	public List<Comment> getCommentsByCctvIdWithFirstPage(long cctvId) {
-		return getCommentsByCctvIdWithFirstPage(cctvId, DEFAULT_PAGE_SIZE);
+		return getCommentsByCctvIdWithFirstPage(cctvId, DEFAULT_COMMENT_PAGE_SIZE);
 	}
 
 	public List<Comment> getCommentsByCctvIdWithFirstPage(long cctvId, int size) {
 		return commentRepository.findByCctvIdWithFirstPage(cctvId, size);
 	}
 
-	public List<Comment> getCommentsByCctvIdWithPagination(long cctvId, long from) {
-		return getCommentsByCctvIdWithPagination(cctvId, from, DEFAULT_PAGE_SIZE);
-	}
-
-	public List<Comment> getCommentsByCctvIdWithPagination(long cctvId, long from, int size) {
-		if (size == 0) {
-			return commentRepository.findByCctvIdWithPagination(cctvId, from, DEFAULT_PAGE_SIZE);
+	public List<Comment> getCommentsByCctvIdWithPagination(long cctvId, Long from, Integer size) {
+		if (from == null) {
+			return getCommentsByCctvIdWithFirstPage(cctvId, size);
 		}
 		return commentRepository.findByCctvIdWithPagination(cctvId, from, size);
 	}

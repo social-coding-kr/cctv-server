@@ -6,6 +6,8 @@ import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.domain.services.comment.CommentService;
 import com.socialcoding.domain.services.reliability.ReliabilityService;
 import com.socialcoding.domain.services.reliability.ReliablePoint;
+import com.socialcoding.interfaces.dtos.Request;
+import com.socialcoding.interfaces.dtos.Request.CommentLoadDto;
 import com.socialcoding.interfaces.dtos.Response.CctvDetailDto;
 import com.socialcoding.interfaces.dtos.Response.CommentBundleDto;
 import com.socialcoding.interfaces.dtos.Response.CommentDto;
@@ -61,9 +63,9 @@ public class CctvDetailController {
     }
 
     @RequestMapping(value = "/cctv/{cctvId}/comments", method = RequestMethod.GET)
-    public Map<String, Object> getComments(@PathVariable Long cctvId, long fromCommentId, @RequestParam(defaultValue = "10") int size) {
+    public Map<String, Object> getComments(@PathVariable Long cctvId, CommentLoadDto commentLoadDto) {
 		//TODO make request object
-		List<Comment> comments = commentService.getCommentsByCctvIdWithPagination(cctvId, fromCommentId, size);
+		List<Comment> comments = commentService.getCommentsByCctvIdWithPagination(cctvId, commentLoadDto.getFromCommentId(), commentLoadDto.getSize());
 		CommentBundleDto commentBundleDto = new CommentBundleDto();
 		commentBundleDto.setNextRequestCommentId(commentService.getNextRequestCommentId(comments));
 		commentBundleDto.setComments(MAPPER.map(comments, TYPE_COMMENT_DTO));
