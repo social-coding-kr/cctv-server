@@ -13,6 +13,15 @@ import static com.socialcoding.Constants.DEFAULT_COMMENT_PAGE_SIZE;
 public class Request {
     @Getter
     @Setter
+    public static class ReliabilityApplyDto {
+        @NotBlank
+        private String userId;
+        @NotNull
+        private Boolean reliable;
+    }
+
+    @Getter
+    @Setter
     public static class CctvValidationDto {
         @NotNull
         private Long latitude;

@@ -62,6 +62,5 @@ public class Response {
 	public static class ReliabilityDto {
 		private long correctPoint;
 		private long incorrectPoint;
-//		private Reliability reliability;
 	}
 }

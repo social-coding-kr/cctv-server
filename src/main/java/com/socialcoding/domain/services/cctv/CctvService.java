@@ -12,6 +12,10 @@ public class CctvService {
 	@Autowired
 	private CctvRepository cctvRepository;
 
+	public Cctv getCctvById(long cctvId)  {
+		return cctvRepository.findOne(cctvId);
+	}
+
 	public Cctv getCctvDetailById(long cctvId) {
 		return cctvRepository.findWithReliability(cctvId);
 	}
