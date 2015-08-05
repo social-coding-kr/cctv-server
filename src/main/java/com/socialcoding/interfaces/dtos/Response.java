@@ -16,7 +16,7 @@ public class Response {
 
     @Getter
     @Setter
-    public static class CctvValidationDto {
+    public static class NearestCctvDto {
         private long cctvId;
         private String cctvImage;
     }

@@ -5,7 +5,8 @@ import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.interfaces.dtos.Request;
 import com.socialcoding.interfaces.dtos.Request.CctvRegistrationDto;
-import com.socialcoding.interfaces.dtos.Response.CctvValidationDto;
+import com.socialcoding.interfaces.dtos.Request.CctvValidationDto;
+import com.socialcoding.interfaces.dtos.Response.NearestCctvDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +27,9 @@ public class CctvRegistrationController {
     private CctvService cctvService;
 
     @RequestMapping(value = "/cctv/validate", method = RequestMethod.GET)
-    public Map<String, Object> validateNewCctv(Double latitude, Double longitude) {
-        if (latitude == 10d) {
+
+    public Map<String, Object> validateNewCctv(@Valid CctvValidationDto cctvValidationDto) {
+        if (cctvValidationDto.getLatitude() == 10d) {
             return new HashMap<String, Object>() {
                 {
                     put("status", SUCCESS);
@@ -36,11 +38,11 @@ public class CctvRegistrationController {
             };
         }
 
-        CctvValidationDto validation10 = new CctvValidationDto();
+        NearestCctvDto validation10 = new NearestCctvDto();
         validation10.setCctvId(10);
         validation10.setCctvImage("https://pixabay.com/static/uploads/photo/2013/07/13/09/46/surveillance-155982_640.png");
 
-        CctvValidationDto validation20 = new CctvValidationDto();
+        NearestCctvDto validation20 = new NearestCctvDto();
         validation20.setCctvId(20);
         validation20.setCctvImage("https://pixabay.com/static/uploads/photo/2013/07/13/09/46/surveillance-155982_640.png");
 
