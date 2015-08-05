@@ -37,4 +37,8 @@ public class CommentService {
 		Comment lastComment = Iterables.getLast(comments, null);
 		return lastComment != null ? lastComment.getCommentId() - BEFORE_ONE_COMMENT : DEFAULT_LAST_COMMENT_ID;
 	}
+
+	public Comment writeComment(Comment comment) {
+		return commentRepository.save(comment);
+	}
 }

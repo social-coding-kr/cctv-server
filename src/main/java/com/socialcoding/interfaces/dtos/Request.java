@@ -13,8 +13,21 @@ import static com.socialcoding.Constants.DEFAULT_COMMENT_PAGE_SIZE;
 public class Request {
     @Getter
     @Setter
+    public static class CommentWriteDto {
+        @NotBlank
+        private String userId;
+        @NotBlank
+        private String contents;
+
+        private int size = DEFAULT_COMMENT_PAGE_SIZE;
+    }
+
+    @Getter
+    @Setter
     public static class CommentLoadDto {
+        @NotNull
         private Long fromCommentId;
+
         private int size = DEFAULT_COMMENT_PAGE_SIZE;
     }
 

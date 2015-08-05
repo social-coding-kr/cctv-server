@@ -54,6 +54,7 @@ public class CctvRegistrationController {
 
     @RequestMapping(value = "/cctv", method = RequestMethod.POST)
     public Map<String, Object> registerCctv(@Valid CctvRegistrationDto cctvRegistrationDto) {
+        //TODO check image mapping
         Cctv cctv = MAPPER.map(cctvRegistrationDto, Cctv.class);
         //TODO save image file
         Cctv registeredCctv = cctvService.register(cctv);
