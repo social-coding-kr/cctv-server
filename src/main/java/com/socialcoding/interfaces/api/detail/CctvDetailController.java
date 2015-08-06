@@ -42,6 +42,7 @@ public class CctvDetailController {
 		TotalReliabilityDto totalReliabilityDto = new TotalReliabilityDto();
 		totalReliabilityDto.setCorrectReliability(reliabilityService.getCorrectReliability(cctv.getReliabilities()));
 		totalReliabilityDto.setIncorrectReliability(reliabilityService.getIncorrectReliability(cctv.getReliabilities()));
+        //TODO 현재 유저의 선택 정보 넘기기
 
 		List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId);
 		CommentBundleDto commentBundleDto = new CommentBundleDto();
