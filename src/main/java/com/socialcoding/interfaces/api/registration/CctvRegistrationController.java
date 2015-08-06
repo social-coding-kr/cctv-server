@@ -25,7 +25,6 @@ public class CctvRegistrationController {
     private CctvService cctvService;
 
     @RequestMapping(value = "/cctv/validate", method = RequestMethod.GET)
-
     public Map<String, Object> validateNewCctv(@Valid CctvValidationDto cctvValidationDto) {
         NearestCctvDto validation10 = new NearestCctvDto();
         validation10.setCctvId(10);

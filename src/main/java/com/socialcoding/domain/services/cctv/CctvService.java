@@ -1,5 +1,6 @@
 package com.socialcoding.domain.services.cctv;
 
+import com.google.common.base.Preconditions;
 import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.repositories.cctv.CctvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,15 @@ public class CctvService {
 	private CctvRepository cctvRepository;
 
 	public Cctv getCctvById(long cctvId)  {
-		return cctvRepository.findOne(cctvId);
+		Cctv cctv = cctvRepository.findOne(cctvId);
+		Preconditions.checkArgument(cctv != null, "Cctv is not exist");
+		return cctv;
 	}
 
 	public Cctv getCctvDetailById(long cctvId) {
-		return cctvRepository.findWithReliability(cctvId);
+		Cctv cctv = cctvRepository.findWithReliability(cctvId);
+		Preconditions.checkArgument(cctv != null, "Cctv is not exist");
+		return cctv;
 	}
 
 	@Transactional(value = "transactionManager", readOnly = false)

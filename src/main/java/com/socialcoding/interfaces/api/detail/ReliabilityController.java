@@ -28,7 +28,6 @@ public class ReliabilityController {
     @RequestMapping(value = "/cctv/{cctvId}/reliability", method = RequestMethod.GET)
     public Map<String, Object> getReliabilities(@PathVariable Long cctvId) {
         Cctv cctv = cctvService.getCctvDetailById(cctvId);
-        //TODO handle null cctv
         TotalReliabilityDto totalReliabilityDto = new TotalReliabilityDto();
         totalReliabilityDto.setCorrectReliability(reliabilityService.getCorrectReliability(cctv.getReliabilities()));
         totalReliabilityDto.setIncorrectReliability(reliabilityService.getIncorrectReliability(cctv.getReliabilities()));

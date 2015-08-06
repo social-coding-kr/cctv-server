@@ -15,6 +15,7 @@ import static com.socialcoding.interfaces.dtos.Response.ResponseStatus.SUCCESS;
 public class CctvMapController {
     @RequestMapping(value = "/map/cctvs", method = RequestMethod.GET)
     public Map<String, Object> getCctvs(Long reliability) {
+        //TODO add logic
         CctvOverviewDto badCctv = new CctvOverviewDto();
         badCctv.setCctvId(10L);
         badCctv.setLatitude(37.481200d);
