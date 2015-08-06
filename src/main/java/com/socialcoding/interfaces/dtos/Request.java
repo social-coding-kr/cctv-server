@@ -13,7 +13,7 @@ import static com.socialcoding.Constants.DEFAULT_COMMENT_PAGE_SIZE;
 public class Request {
     @Getter
     @Setter
-    public static class ReliabilityApplyDto {
+    public static class ReliabilitySelectDto {
         @NotBlank
         private String userId;
         @NotNull

@@ -5,12 +5,14 @@ import com.socialcoding.domain.models.Comment;
 import com.socialcoding.domain.repositories.comment.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static com.socialcoding.Constants.DEFAULT_COMMENT_PAGE_SIZE;
 
 @Service
+@Transactional(value = "transactionManager", readOnly = true)
 public class CommentService {
 	private static final int BEFORE_ONE_COMMENT = 1;
 	private static final long DEFAULT_LAST_COMMENT_ID = 0L;
@@ -38,6 +40,7 @@ public class CommentService {
 		return lastComment != null ? lastComment.getCommentId() - BEFORE_ONE_COMMENT : DEFAULT_LAST_COMMENT_ID;
 	}
 
+	@Transactional(value = "transactionManager", readOnly = false)
 	public Comment writeComment(Comment comment) {
 		return commentRepository.save(comment);
 	}

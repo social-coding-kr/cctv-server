@@ -9,26 +9,26 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional(value = "transactionManager", readOnly = true)
 public class ReliabilityService {
 	@Autowired
 	private ReliabilityRepository reliabilityRepository;
 
-	public ReliablePoint getReliablePointByCctvId(Long cctvId) {
+	public TotalReliability getTotalReliabilityByCctvId(Long cctvId) {
 		List<Reliability> reliabilities = reliabilityRepository.findByCctvId(cctvId);
-		return ReliablePoint.of(getCorrectPoint(reliabilities), getIncorrectPoint(reliabilities));
+		return TotalReliability.of(getCorrectReliability(reliabilities), getIncorrectReliability(reliabilities));
 	}
 
-	public long getCorrectPoint(List<Reliability> reliabilities) {
-		return reliabilities.stream().filter(point -> point.getReliable()).count();
+	public long getCorrectReliability(List<Reliability> reliabilities) {
+		return reliabilities.stream().filter(reliability -> reliability.getReliable()).count();
 	}
 
-	public long getIncorrectPoint(List<Reliability> reliabilities) {
-		return reliabilities.stream().filter(point -> !point.getReliable()).count();
+	public long getIncorrectReliability(List<Reliability> reliabilities) {
+		return reliabilities.stream().filter(reliability -> !reliability.getReliable()).count();
 	}
 
-	@Transactional(readOnly = false)
-	public Reliability applyReliability(Reliability reliability) {
+	@Transactional(value = "transactionManager", readOnly = false)
+	public Reliability selectReliability(Reliability reliability) {
 		return reliabilityRepository.save(reliability);
 	}
 }

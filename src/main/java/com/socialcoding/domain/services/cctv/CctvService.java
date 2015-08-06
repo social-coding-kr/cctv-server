@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional(value = "transactionManager", readOnly = true)
 public class CctvService {
 	@Autowired
 	private CctvRepository cctvRepository;
@@ -20,7 +20,7 @@ public class CctvService {
 		return cctvRepository.findWithReliability(cctvId);
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(value = "transactionManager", readOnly = false)
 	public Cctv register(Cctv cctv) {
 		cctv.setSource(CctvSource.USER);
 		return cctvRepository.save(cctv);

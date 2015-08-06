@@ -59,8 +59,15 @@ public class Response {
 
 	@Getter
 	@Setter
-	public static class ReliabilityDto {
-		private long correctPoint;
-		private long incorrectPoint;
+	public static class TotalReliabilityDto {
+		private long correctReliability;
+		private long incorrectReliability;
 	}
+
+    @Getter
+    @Setter
+    public static class UserReliabilityDto {
+        private long reliabilityId;
+        private boolean reliable;
+    }
 }
