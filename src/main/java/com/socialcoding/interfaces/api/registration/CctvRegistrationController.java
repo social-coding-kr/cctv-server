@@ -5,7 +5,7 @@ import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.interfaces.dtos.ObjectMapper;
 import com.socialcoding.interfaces.dtos.Request.CctvRegistrationDto;
-import com.socialcoding.interfaces.dtos.Request.CctvValidationDto;
+import com.socialcoding.interfaces.dtos.Request.CctvPositionDto;
 import com.socialcoding.interfaces.dtos.Response.NearestCctvDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +25,7 @@ public class CctvRegistrationController {
     private CctvService cctvService;
 
     @RequestMapping(value = "/cctv/validate", method = RequestMethod.GET)
-    public Map<String, Object> validateNewCctv(@Valid CctvValidationDto cctvValidationDto) {
+    public Map<String, Object> validateNewCctv(@Valid CctvPositionDto cctvPositionDto) {
         NearestCctvDto validation10 = new NearestCctvDto();
         validation10.setCctvId(10);
         validation10.setCctvImage("https://pixabay.com/static/uploads/photo/2013/07/13/09/46/surveillance-155982_640.png");

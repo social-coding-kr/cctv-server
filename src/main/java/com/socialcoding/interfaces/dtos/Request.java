@@ -22,7 +22,7 @@ public class Request {
 
     @Getter
     @Setter
-    public static class CctvValidationDto {
+    public static class CctvPositionDto {
         @NotNull
         private Long latitude;
         @NotNull
