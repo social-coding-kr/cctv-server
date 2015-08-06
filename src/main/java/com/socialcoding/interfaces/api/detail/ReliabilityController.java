@@ -45,8 +45,7 @@ public class ReliabilityController {
     @RequestMapping(value = "/cctv/{cctvId}/reliability", method = RequestMethod.POST)
     public Map<String, Object> selectReliability(@PathVariable Long cctvId, @RequestBody @Valid ReliabilitySelectDto reliabilitySelectDto) {
         Cctv cctv = cctvService.getCctvById(cctvId);
-        Reliability reliability = ObjectMapper.map(reliabilitySelectDto);
-        reliability.setCctv(cctv);
+        Reliability reliability = ObjectMapper.map(reliabilitySelectDto, cctv);
         Reliability userReliability = reliabilityService.selectReliability(reliability);
         TotalReliability totalReliability = reliabilityService.getTotalReliabilityByCctvId(cctvId);
 

@@ -1,7 +1,10 @@
 package com.socialcoding.interfaces.api.detail;
 
+import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.models.Comment;
+import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.domain.services.comment.CommentService;
+import com.socialcoding.interfaces.dtos.ObjectMapper;
 import com.socialcoding.interfaces.dtos.Request;
 import com.socialcoding.interfaces.dtos.Request.CommentLoadDto;
 import com.socialcoding.interfaces.dtos.Request.CommentWriteDto;
@@ -23,9 +26,10 @@ import static com.socialcoding.interfaces.dtos.Response.ResponseStatus.SUCCESS;
 
 @RestController
 public class CommentController {
-    private static final ModelMapper MAPPER = new ModelMapper();
     private static final Type TYPE_COMMENT_DTO = new TypeToken<List<CommentDto>>() {}.getType();
 
+    @Autowired
+    private CctvService cctvService;
     @Autowired
     private CommentService commentService;
 
@@ -34,7 +38,7 @@ public class CommentController {
         List<Comment> comments = commentService.getCommentsByCctvIdWithPagination(cctvId, commentLoadDto.getFromCommentId(), commentLoadDto.getSize());
         CommentBundleDto commentBundleDto = new CommentBundleDto();
         commentBundleDto.setNextRequestCommentId(commentService.getNextRequestCommentId(comments));
-        commentBundleDto.setComments(MAPPER.map(comments, TYPE_COMMENT_DTO));
+        commentBundleDto.setComments(ObjectMapper.map(comments, TYPE_COMMENT_DTO));
 
         return new HashMap<String, Object>() {
             {
@@ -46,13 +50,14 @@ public class CommentController {
 
     @RequestMapping(value = "/cctv/{cctvId}/comment", method = RequestMethod.POST)
     public Map<String, Object> writeComment(@PathVariable Long cctvId, @RequestBody @Valid CommentWriteDto commentWriteDto) {
-        Comment comment = MAPPER.map(commentWriteDto, Comment.class);
+        Cctv cctv = cctvService.getCctvById(cctvId);
+        Comment comment = ObjectMapper.map(commentWriteDto, cctv);
         commentService.writeComment(comment);
 
         List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId, commentWriteDto.getSize());
         CommentBundleDto commentBundleDto = new CommentBundleDto();
         commentBundleDto.setNextRequestCommentId(commentService.getNextRequestCommentId(comments));
-        commentBundleDto.setComments(MAPPER.map(comment, TYPE_COMMENT_DTO));
+        commentBundleDto.setComments(ObjectMapper.map(comments, TYPE_COMMENT_DTO));
 
         return new HashMap<String, Object>() {
             {
