@@ -20,6 +20,8 @@ public class ApiControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({IllegalArgumentException.class, BindException.class})
     public Map<String, Object> resolveArgumentException(HttpServletRequest request, Exception exception) {
+        log.error("Parameter exception occurred", exception);
+
         return new HashMap<String, Object>() {
             {
                 put("status", Response.ResponseStatus.FAILURE);
@@ -33,6 +35,8 @@ public class ApiControllerAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public Map<String, Object> resolveException(HttpServletRequest request, Exception exception) {
+        log.error("Exception occurred", exception);
+
         return new HashMap<String, Object>() {
             {
                 put("status", Response.ResponseStatus.FAILURE);

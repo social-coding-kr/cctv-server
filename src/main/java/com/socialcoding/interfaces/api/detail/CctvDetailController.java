@@ -5,15 +5,12 @@ import com.socialcoding.domain.models.Comment;
 import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.domain.services.comment.CommentService;
 import com.socialcoding.domain.services.reliability.ReliabilityService;
-import com.socialcoding.domain.services.reliability.ReliablePoint;
-import com.socialcoding.interfaces.dtos.Request;
-import com.socialcoding.interfaces.dtos.Request.CommentLoadDto;
+import com.socialcoding.interfaces.dtos.ObjectMapper;
 import com.socialcoding.interfaces.dtos.Response.CctvDetailDto;
 import com.socialcoding.interfaces.dtos.Response.CommentBundleDto;
 import com.socialcoding.interfaces.dtos.Response.CommentDto;
-import com.socialcoding.interfaces.dtos.Response.ReliabilityDto;
+import com.socialcoding.interfaces.dtos.Response.TotalReliabilityDto;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +25,6 @@ import static com.socialcoding.interfaces.dtos.Response.ResponseStatus.SUCCESS;
 @Slf4j
 @RestController
 public class CctvDetailController {
-	private static final ModelMapper MAPPER = new ModelMapper();
 	private static final Type TYPE_COMMENT_DTO = new TypeToken<List<CommentDto>>() {}.getType();
 
 	@Autowired
@@ -41,22 +37,23 @@ public class CctvDetailController {
     @RequestMapping(value = "/cctv/{cctvId}", method = RequestMethod.GET)
     public Map<String, Object> getCctv(@PathVariable Long cctvId) {
 		Cctv cctv = cctvService.getCctvDetailById(cctvId);
-		CctvDetailDto cctvDetailDto = MAPPER.map(cctv, CctvDetailDto.class);
+		CctvDetailDto cctvDetailDto = ObjectMapper.map(cctv, CctvDetailDto.class);
 
-		ReliabilityDto reliabilityDto = new ReliabilityDto();
-		reliabilityDto.setCorrectPoint(reliabilityService.getCorrectPoint(cctv.getReliabilities()));
-		reliabilityDto.setIncorrectPoint(reliabilityService.getIncorrectPoint(cctv.getReliabilities()));
+		TotalReliabilityDto totalReliabilityDto = new TotalReliabilityDto();
+		totalReliabilityDto.setCorrectReliability(reliabilityService.getCorrectReliability(cctv.getReliabilities()));
+		totalReliabilityDto.setIncorrectReliability(reliabilityService.getIncorrectReliability(cctv.getReliabilities()));
+        //TODO 현재 유저의 선택 정보 넘기기
 
 		List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId);
 		CommentBundleDto commentBundleDto = new CommentBundleDto();
 		commentBundleDto.setNextRequestCommentId(commentService.getNextRequestCommentId(comments));
-		commentBundleDto.setComments(MAPPER.map(comments, TYPE_COMMENT_DTO));
+		commentBundleDto.setComments(ObjectMapper.map(comments, TYPE_COMMENT_DTO));
 
         return new HashMap<String, Object>() {
             {
                 put("status", SUCCESS);
                 put("cctv", cctvDetailDto);
-				put("reliability", reliabilityDto);
+				put("totalReliability", totalReliabilityDto);
                 put("comments", commentBundleDto);
             }
         };
