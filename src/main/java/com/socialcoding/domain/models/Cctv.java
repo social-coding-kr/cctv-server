@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@ToString(exclude = { "comments", "reliabilities" })
+@ToString(exclude = "comments")
 @Entity
 @Table(name = "cctvs")
 public class Cctv {
@@ -46,7 +46,4 @@ public class Cctv {
 
 	@OneToMany(mappedBy = "cctv", fetch = FetchType.LAZY)
 	private List<Comment> comments;
-
-	@OneToMany(mappedBy = "cctv", fetch = FetchType.LAZY)
-	private List<Reliability> reliabilities;
 }

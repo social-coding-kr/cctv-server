@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CctvRepository extends JpaRepository<Cctv, Long> {
-	@Query("SELECT c FROM Cctv c LEFT JOIN FETCH c.reliabilities WHERE c.cctvId = :cctvId")
-	Cctv findWithReliability(@Param("cctvId") long cctvId);
 }

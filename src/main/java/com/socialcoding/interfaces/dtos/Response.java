@@ -16,18 +16,10 @@ public class Response {
 
     @Getter
     @Setter
-    public static class NearestCctvDto {
-        private long cctvId;
-        private String cctvImage;
-    }
-
-    @Getter
-    @Setter
     public static class CctvOverviewDto {
         private long cctvId;
         private double latitude;
         private double longitude;
-        private String color;
     }
 
     @Getter
@@ -44,7 +36,7 @@ public class Response {
     @Getter
     @Setter
     public static class CommentBundleDto {
-        private long nextRequestCommentId;
+        private long nextCommentId;
         private List<CommentDto> comments;
     }
 
@@ -55,19 +47,5 @@ public class Response {
         private String userId;
         private String contents;
         private Date createdAt;
-    }
-
-	@Getter
-	@Setter
-	public static class TotalReliabilityDto {
-		private long correctReliability;
-		private long incorrectReliability;
-	}
-
-    @Getter
-    @Setter
-    public static class UserReliabilityDto {
-        private long reliabilityId;
-        private boolean reliable;
     }
 }

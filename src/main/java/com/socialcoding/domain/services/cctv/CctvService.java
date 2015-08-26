@@ -20,7 +20,7 @@ public class CctvService {
 	}
 
 	public Cctv getCctvDetailById(long cctvId) {
-		Cctv cctv = cctvRepository.findWithReliability(cctvId);
+		Cctv cctv = cctvRepository.findOne(cctvId);
 		Preconditions.checkArgument(cctv != null, "Cctv is not exist");
 		return cctv;
 	}

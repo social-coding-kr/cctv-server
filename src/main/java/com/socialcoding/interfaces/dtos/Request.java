@@ -13,20 +13,13 @@ import static com.socialcoding.Constants.DEFAULT_COMMENT_PAGE_SIZE;
 public class Request {
     @Getter
     @Setter
-    public static class ReliabilitySelectDto {
-        @NotBlank
-        private String userId;
-        @NotNull
-        private Boolean reliable;
-    }
-
-    @Getter
-    @Setter
-    public static class CctvPositionDto {
+    public static class PositionDto {
         @NotNull
         private Long latitude;
         @NotNull
         private Long longitude;
+        @NotNull
+        private Integer radius;
     }
 
     @Getter
@@ -64,6 +57,5 @@ public class Request {
         private String userId;
 
         private MultipartFile noticeImage;
-
     }
 }

@@ -20,13 +20,11 @@ public class CctvMapController {
         badCctv.setCctvId(10L);
         badCctv.setLatitude(37.481200d);
         badCctv.setLongitude(126.952514d);
-        badCctv.setColor("#FF0000");
 
         CctvOverviewDto goodCctv = new CctvOverviewDto();
         goodCctv.setCctvId(10L);
         goodCctv.setLatitude(37.478216d);
         goodCctv.setLongitude(126.951527d);
-        goodCctv.setColor("#0000FF");
 
         return new HashMap<String, Object>() {
             {
