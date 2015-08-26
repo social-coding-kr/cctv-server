@@ -16,7 +16,7 @@ public class Response {
 
     @Getter
     @Setter
-    public static class CctvOverviewDto {
+    public static class MapCctvDto {
         private long cctvId;
         private double latitude;
         private double longitude;

@@ -1,6 +1,5 @@
 package com.socialcoding.interfaces.api.registration;
 
-import com.google.common.collect.Lists;
 import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.interfaces.dtos.ObjectMapper;
@@ -27,7 +26,7 @@ public class CctvRegistrationController {
         //TODO check image mapping
         Cctv cctv = ObjectMapper.map(cctvRegistrationDto, Cctv.class);
         //TODO save image file
-        Cctv registeredCctv = cctvService.register(cctv);
+        Cctv registeredCctv = cctvService.registerCctv(cctv);
 
         return new HashMap<String, Object>() {
             {

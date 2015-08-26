@@ -32,7 +32,7 @@ public class CctvDetailController {
 
     @RequestMapping(value = "/cctv/{cctvId}", method = RequestMethod.GET)
     public Map<String, Object> getCctv(@PathVariable Long cctvId) {
-		Cctv cctv = cctvService.getCctvDetailById(cctvId);
+		Cctv cctv = cctvService.getCctvById(cctvId);
 		CctvDetailDto cctvDetailDto = ObjectMapper.map(cctv, CctvDetailDto.class);
 
 		List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId);

@@ -19,14 +19,8 @@ public class CctvService {
 		return cctv;
 	}
 
-	public Cctv getCctvDetailById(long cctvId) {
-		Cctv cctv = cctvRepository.findOne(cctvId);
-		Preconditions.checkArgument(cctv != null, "Cctv is not exist");
-		return cctv;
-	}
-
 	@Transactional(value = "transactionManager", readOnly = false)
-	public Cctv register(Cctv cctv) {
+	public Cctv registerCctv(Cctv cctv) {
 		cctv.setSource(CctvSource.USER);
 		return cctvRepository.save(cctv);
 	}
