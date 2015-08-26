@@ -5,6 +5,8 @@ import com.socialcoding.domain.models.Comment;
 import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.domain.services.comment.CommentService;
 import com.socialcoding.interfaces.dtos.ObjectMapper;
+import com.socialcoding.interfaces.dtos.Request;
+import com.socialcoding.interfaces.dtos.Request.CommentDeletionDto;
 import com.socialcoding.interfaces.dtos.Request.CommentLoadDto;
 import com.socialcoding.interfaces.dtos.Request.CommentWriteDto;
 import com.socialcoding.interfaces.dtos.Response.CommentBundleDto;
@@ -64,4 +66,15 @@ public class CommentController {
         };
     }
 
+    @RequestMapping(value = "/cctv/{cctvId}/comment", method = RequestMethod.DELETE)
+    public Map<String, Object> deleteComment(@PathVariable Long cctvId, @RequestBody @Valid CommentDeletionDto commentDeletionDto) {
+        //TODO validation
+        //TODO test
+        commentService.deleteComment(commentDeletionDto.getCommentId());
+        return new HashMap<String, Object>() {
+            {
+                put("status", SUCCESS);
+            }
+        };
+    }
 }

@@ -13,7 +13,7 @@ import static com.socialcoding.Constants.DEFAULT_COMMENT_PAGE_SIZE;
 public class Request {
     @Getter
     @Setter
-    public static class PositionDto {
+    public static class MapPositionDto {
         @NotNull
         private Long latitude;
         @NotNull
@@ -31,6 +31,15 @@ public class Request {
         private String contents;
 
         private int size = DEFAULT_COMMENT_PAGE_SIZE;
+    }
+
+    @Getter
+    @Setter
+    public static class CommentDeletionDto {
+        @NotBlank
+        private String userId;
+        @NotNull
+        private Long commentId;
     }
 
     @Getter

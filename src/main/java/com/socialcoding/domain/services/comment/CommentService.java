@@ -44,4 +44,9 @@ public class CommentService {
 	public Comment writeComment(Comment comment) {
 		return commentRepository.save(comment);
 	}
+
+	@Transactional(value = "transactionManager", readOnly = false)
+	public void deleteComment(long cctvId) {
+		commentRepository.delete(cctvId);
+	}
 }
