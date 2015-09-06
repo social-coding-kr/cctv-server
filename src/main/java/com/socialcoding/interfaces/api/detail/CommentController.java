@@ -5,7 +5,6 @@ import com.socialcoding.domain.models.Comment;
 import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.domain.services.comment.CommentService;
 import com.socialcoding.interfaces.dtos.ObjectMapper;
-import com.socialcoding.interfaces.dtos.Request;
 import com.socialcoding.interfaces.dtos.Request.CommentDeletionDto;
 import com.socialcoding.interfaces.dtos.Request.CommentLoadDto;
 import com.socialcoding.interfaces.dtos.Request.CommentWriteDto;

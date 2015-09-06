@@ -1,7 +1,6 @@
 package com.socialcoding.domain.repositories.comment;
 
 import com.socialcoding.domain.models.Comment;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 

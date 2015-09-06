@@ -2,8 +2,6 @@ package com.socialcoding.domain.repositories.cctv;
 
 import com.socialcoding.domain.models.Cctv;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository

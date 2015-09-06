@@ -2,7 +2,6 @@ package com.socialcoding.domain.repositories.comment;
 
 import com.socialcoding.domain.models.Comment;
 import com.socialcoding.domain.models.QComment;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.List;
