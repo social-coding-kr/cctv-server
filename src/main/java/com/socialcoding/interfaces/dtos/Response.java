@@ -20,6 +20,7 @@ public class Response {
         private long cctvId;
         private double latitude;
         private double longitude;
+        private CctvPurpose purpose;
     }
 
     @Getter

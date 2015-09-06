@@ -1,6 +1,8 @@
 package com.socialcoding.interfaces.dtos;
 
 import com.socialcoding.domain.services.cctv.CctvPurpose;
+import com.socialcoding.domain.services.cctv.Position;
+import com.socialcoding.interfaces.api.registration.validation.NotEmptyMultipartFile;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
@@ -15,11 +17,9 @@ public class Request {
     @Setter
     public static class MapPositionDto {
         @NotNull
-        private Long latitude;
+        private Position northEast;
         @NotNull
-        private Long longitude;
-        @NotNull
-        private Integer radius;
+        private Position southWest;
     }
 
     @Getter
@@ -60,7 +60,7 @@ public class Request {
         private Long longitude;
         @NotNull
         private CctvPurpose purpose;
-        @NotNull
+        @NotEmptyMultipartFile
         private MultipartFile cctvImage;
         @NotBlank
         private String userId;

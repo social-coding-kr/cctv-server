@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(value = "transactionManager", readOnly = true)
 public class CctvService {
@@ -23,5 +25,9 @@ public class CctvService {
 	public Cctv registerCctv(Cctv cctv) {
 		cctv.setSource(CctvSource.USER);
 		return cctvRepository.save(cctv);
+	}
+
+	public List<Cctv> listCctvsBetween(Position northEast, Position southWest) {
+		return cctvRepository.findAllBetweenPosition(northEast, southWest);
 	}
 }
