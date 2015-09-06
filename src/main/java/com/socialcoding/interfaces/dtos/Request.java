@@ -17,13 +17,13 @@ public class Request {
     @Setter
     public static class MapPositionDto {
         @NotNull
-        private Double southWestLatitude;
+        private Double south;
         @NotNull
-        private Double southWestLongitude;
+        private Double west;
         @NotNull
-        private Double northEastLatitude;
+        private Double north;
         @NotNull
-        private Double northEastLongitude;
+        private Double east;
     }
 
     @Getter
