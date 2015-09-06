@@ -2,6 +2,7 @@ package com.socialcoding.interfaces.api.map;
 
 import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.services.cctv.CctvService;
+import com.socialcoding.domain.services.cctv.Position;
 import com.socialcoding.interfaces.dtos.ObjectMapper;
 import com.socialcoding.interfaces.dtos.Request.MapPositionDto;
 import com.socialcoding.interfaces.dtos.Response.MapCctvDto;
@@ -28,7 +29,9 @@ public class CctvMapController {
 
     @RequestMapping(value = "/map/cctvs", method = RequestMethod.GET)
     public Map<String, Object> getCctvs(@Valid MapPositionDto positions) {
-        List<Cctv> cctvs = cctvService.listCctvsBetween(positions.getNorthEast(), positions.getSouthWest());
+        Position southWest = Position.of(positions.getSouthWestLatitude(), positions.getSouthWestLongitude());
+        Position northEast = Position.of(positions.getNorthEastLatitude(), positions.getNorthEastLongitude());
+        List<Cctv> cctvs = cctvService.listCctvsBetween(southWest, northEast);
         List<MapCctvDto> mapCctvDtos = ObjectMapper.map(cctvs, TYPE_MAP_CCTV_DTO);
         return new HashMap<String, Object>() {
             {

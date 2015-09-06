@@ -16,8 +16,9 @@ public class CctvRepositoryImpl extends QueryDslRepositorySupport implements Cct
 
     @Override
     public List<Cctv> findAllBetweenPosition(Position lower, Position upper) {
-        return from(cctv).where(cctv.latitude.goe(lower.getLatitude()).and(cctv.latitude.loe(upper.getLatitude())))
-                .where(cctv.longitude.goe(lower.getLongitude()).and(cctv.longitude.loe(upper.getLongitude())))
+        return from(cctv) //
+                .where(cctv.latitude.goe(lower.getLatitude()).and(cctv.latitude.loe(upper.getLatitude()))) //
+                .where(cctv.longitude.goe(lower.getLongitude()).and(cctv.longitude.loe(upper.getLongitude()))) //
                 .list(cctv);
     }
 }

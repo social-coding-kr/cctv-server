@@ -6,5 +6,5 @@ import com.socialcoding.domain.services.cctv.Position;
 import java.util.List;
 
 public interface CctvRepositoryCustom {
-    List<Cctv> findAllBetweenPosition(Position northEast, Position southWest);
+    List<Cctv> findAllBetweenPosition(Position lower, Position upper);
 }

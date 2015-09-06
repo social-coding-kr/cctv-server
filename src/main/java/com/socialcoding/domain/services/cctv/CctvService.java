@@ -27,7 +27,7 @@ public class CctvService {
 		return cctvRepository.save(cctv);
 	}
 
-	public List<Cctv> listCctvsBetween(Position northEast, Position southWest) {
-		return cctvRepository.findAllBetweenPosition(northEast, southWest);
+	public List<Cctv> listCctvsBetween(Position southWest, Position northEast) {
+		return cctvRepository.findAllBetweenPosition(southWest, northEast);
 	}
 }
