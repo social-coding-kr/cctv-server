@@ -30,6 +30,11 @@ public class Comment {
     @Column(name = "createdAt", nullable = false)
     private Date createdAt;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Generated(GenerationTime.ALWAYS)
+    @Column(name = "modifiedAt", nullable = false)
+    private Date modifiedAt;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cctvId")
 	private Cctv cctv;
