@@ -29,9 +29,9 @@ public class CctvMapController {
 
     @RequestMapping(value = "/map/cctvs", method = RequestMethod.GET)
     public Map<String, Object> getCctvs(@Valid MapPositionDto positions) {
-        Position southEast = Position.of(positions.getSouth(), positions.getEast());
-        Position northWest = Position.of(positions.getNorth(), positions.getWest());
-        List<Cctv> cctvs = cctvService.listCctvsBetween(southEast, northWest);
+        Position southWest = Position.of(positions.getSouth(), positions.getWest());
+        Position northEast = Position.of(positions.getNorth(), positions.getEast());
+        List<Cctv> cctvs = cctvService.listCctvsBetween(southWest, northEast);
         List<MapCctvDto> mapCctvDtos = ObjectMapper.map(cctvs, TYPE_MAP_CCTV_DTO);
         return new HashMap<String, Object>() {
             {
