@@ -8,6 +8,7 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -22,10 +23,10 @@ public class Cctv {
     private Long cctvId;
 
     @Column(name = "latitude", nullable = false)
-    private Long latitude;
+    private BigDecimal latitude;
 
     @Column(name = "longitude", nullable = false)
-    private Long longitude;
+    private BigDecimal longitude;
 
     @Column(name = "cctvName", nullable = false)
     private String cctvName;
