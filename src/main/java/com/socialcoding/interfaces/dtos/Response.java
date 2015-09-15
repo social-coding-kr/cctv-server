@@ -5,6 +5,7 @@ import com.socialcoding.domain.services.cctv.CctvSource;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class Response {
     @Setter
     public static class MapCctvDto {
         private long cctvId;
-        private double latitude;
-        private double longitude;
+        private BigDecimal latitude;
+        private BigDecimal longitude;
         private CctvPurpose purpose;
     }
 

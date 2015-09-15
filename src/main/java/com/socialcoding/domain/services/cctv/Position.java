@@ -5,17 +5,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Position {
     @NotNull
-    private double latitude;
+    private BigDecimal latitude;
     @NotNull
-    private double longitude;
+    private BigDecimal longitude;
 
-    public static Position of(double latitude, double longitude) {
+    public static Position of(BigDecimal latitude, BigDecimal longitude) {
         return new Position(latitude, longitude);
     }
 }

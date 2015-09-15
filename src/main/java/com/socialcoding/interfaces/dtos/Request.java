@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
+
 import static com.socialcoding.Constants.DEFAULT_COMMENT_PAGE_SIZE;
 
 public class Request {
@@ -16,13 +18,13 @@ public class Request {
     @Setter
     public static class MapPositionDto {
         @NotNull
-        private Double south;
+        private BigDecimal south;
         @NotNull
-        private Double west;
+        private BigDecimal west;
         @NotNull
-        private Double north;
+        private BigDecimal north;
         @NotNull
-        private Double east;
+        private BigDecimal east;
     }
 
     @Getter
@@ -58,9 +60,9 @@ public class Request {
     @Setter
     public static class CctvRegistrationDto {
         @NotNull
-        private Long latitude;
+        private BigDecimal latitude;
         @NotNull
-        private Long longitude;
+        private BigDecimal longitude;
         @NotNull
         private CctvPurpose purpose;
         @NotEmptyMultipartFile
