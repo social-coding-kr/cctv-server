@@ -1,7 +1,6 @@
 package com.socialcoding.interfaces.dtos;
 
 import com.socialcoding.domain.services.cctv.CctvPurpose;
-import com.socialcoding.domain.services.cctv.Position;
 import com.socialcoding.interfaces.api.registration.validation.NotEmptyMultipartFile;
 import lombok.Getter;
 import lombok.Setter;

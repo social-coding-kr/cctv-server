@@ -37,7 +37,13 @@ public class Cctv {
     @Column(name = "address", nullable = true)
     private String address;
 
-    @Column(name = "cctvImage", nullable = false)
+    @Column(name = "borough")
+    private String borough;
+
+    @Column(name = "dong")
+    private String dong;
+
+    @Column(name = "cctvImage", nullable = true)
     private String cctvImage;
 
     @Column(name = "noticeImage", nullable = true)
