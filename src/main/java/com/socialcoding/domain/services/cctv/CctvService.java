@@ -24,12 +24,12 @@ public class CctvService {
 	@Transactional(value = "transactionManager", readOnly = false)
 	public Cctv registerCctv(Cctv cctv) {
 		cctv.setSource(CctvSource.USER);
-		cctv.setModifiedBy("test");
-		cctv.setCctvName("test");
+		cctv.setModifiedBy(cctv.getCreatedBy());
+		cctv.setCctvName(CctvSource.USER.name());
 		return cctvRepository.save(cctv);
 	}
 
-	public List<Cctv> listCctvsBetween(Position southWest, Position northEast) {
+	public List<Cctv> listCctvBetween(Position southWest, Position northEast) {
 		return cctvRepository.findAllBetweenPosition(southWest, northEast);
 	}
 }

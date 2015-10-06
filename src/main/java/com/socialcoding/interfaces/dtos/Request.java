@@ -1,11 +1,9 @@
 package com.socialcoding.interfaces.dtos;
 
 import com.socialcoding.domain.services.cctv.CctvPurpose;
-import com.socialcoding.interfaces.api.registration.validation.NotEmptyMultipartFile;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 

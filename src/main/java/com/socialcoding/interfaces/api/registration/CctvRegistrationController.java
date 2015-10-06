@@ -2,6 +2,7 @@ package com.socialcoding.interfaces.api.registration;
 
 import com.socialcoding.domain.models.Cctv;
 import com.socialcoding.domain.services.cctv.CctvService;
+import com.socialcoding.interfaces.api.registration.validation.Validations;
 import com.socialcoding.interfaces.dtos.ObjectMapper;
 import com.socialcoding.interfaces.dtos.Request.CctvRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,10 @@ public class CctvRegistrationController {
     public Map<String, Object> registerCctv(@Valid CctvRegistrationDto cctvRegistrationDto,
                                             @RequestParam("cctvImage") MultipartFile cctvImage,
                                             @RequestParam(value = "noticeImage", required = false) MultipartFile noticeImage) {
-        //TODO check image mapping
+
+        Validations.validateImageType(cctvImage);
+        Validations.validateImageType(noticeImage);
+
         Cctv cctv = ObjectMapper.map(cctvRegistrationDto, Cctv.class);
         //TODO save image file
         Cctv registeredCctv = cctvService.registerCctv(cctv);

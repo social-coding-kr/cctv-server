@@ -31,7 +31,7 @@ public class CctvMapController {
     public Map<String, Object> getCctvs(@Valid MapPositionDto positions) {
         Position southWest = Position.of(positions.getSouth(), positions.getWest());
         Position northEast = Position.of(positions.getNorth(), positions.getEast());
-        List<Cctv> cctvs = cctvService.listCctvsBetween(southWest, northEast);
+        List<Cctv> cctvs = cctvService.listCctvBetween(southWest, northEast);
         List<MapCctvDto> mapCctvDtos = ObjectMapper.map(cctvs, TYPE_MAP_CCTV_DTO);
         return new HashMap<String, Object>() {
             {
