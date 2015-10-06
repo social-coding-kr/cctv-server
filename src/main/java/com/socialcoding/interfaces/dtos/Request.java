@@ -64,6 +64,6 @@ public class Request {
         @NotNull
         private CctvPurpose purpose;
         @NotBlank
-        private String createdBy;
+        private String userId;
     }
 }

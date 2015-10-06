@@ -28,7 +28,7 @@ public class CctvRegistrationController {
         Validations.validateImageType(cctvImage);
         Validations.validateImageType(noticeImage);
 
-        Cctv cctv = ObjectMapper.map(cctvRegistrationDto, Cctv.class);
+        Cctv cctv = ObjectMapper.map(cctvRegistrationDto);
         //TODO save image file
         Cctv registeredCctv = cctvService.registerCctv(cctv);
 
