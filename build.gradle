@@ -78,6 +78,10 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
+bootRepackage  {
+    classifier = 'exec'
+}
+
 compileJava {
     dependsOn generateSources
     source generateSources.destinationDir
