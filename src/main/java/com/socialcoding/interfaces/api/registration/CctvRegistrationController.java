@@ -5,10 +5,8 @@ import com.socialcoding.domain.services.cctv.CctvService;
 import com.socialcoding.interfaces.dtos.ObjectMapper;
 import com.socialcoding.interfaces.dtos.Request.CctvRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -22,7 +20,9 @@ public class CctvRegistrationController {
     private CctvService cctvService;
 
     @RequestMapping(value = "/cctv", method = RequestMethod.POST)
-    public Map<String, Object> registerCctv(@RequestBody @Valid CctvRegistrationDto cctvRegistrationDto) {
+    public Map<String, Object> registerCctv(@Valid CctvRegistrationDto cctvRegistrationDto,
+                                            @RequestParam("cctvImage") MultipartFile cctvImage,
+                                            @RequestParam(value = "noticeImage", required = false) MultipartFile noticeImage) {
         //TODO check image mapping
         Cctv cctv = ObjectMapper.map(cctvRegistrationDto, Cctv.class);
         //TODO save image file

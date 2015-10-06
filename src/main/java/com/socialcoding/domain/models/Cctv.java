@@ -54,6 +54,9 @@ public class Cctv {
     @Column(name = "source", nullable = false)
     private CctvSource source;
 
+    @Column(name = "createdBy")
+    private String createdBy;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Generated(GenerationTime.INSERT)
     @Column(name = "createdAt", nullable = false)
@@ -63,6 +66,9 @@ public class Cctv {
     @Generated(GenerationTime.ALWAYS)
     @Column(name = "modifiedAt", nullable = false)
     private Date modifiedAt;
+
+    @Column(name = "modifiedBy")
+    private String modifiedBy;
 
 	@OneToMany(mappedBy = "cctv", fetch = FetchType.LAZY)
 	private List<Comment> comments;

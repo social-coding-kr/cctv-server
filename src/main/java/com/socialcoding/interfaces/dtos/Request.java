@@ -65,11 +65,7 @@ public class Request {
         private BigDecimal longitude;
         @NotNull
         private CctvPurpose purpose;
-        @NotEmptyMultipartFile
-        private MultipartFile cctvImage;
         @NotBlank
-        private String userId;
-
-        private MultipartFile noticeImage;
+        private String createdBy;
     }
 }
