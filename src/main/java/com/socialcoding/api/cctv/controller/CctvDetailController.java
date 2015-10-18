@@ -8,13 +8,11 @@ import com.socialcoding.api.comment.model.Comment;
 import com.socialcoding.api.cctv.service.CctvService;
 import com.socialcoding.api.comment.service.CommentService;
 import com.socialcoding.api.common.ResponseStatus;
-import com.socialcoding.api.common.assemble.ObjectMapper;
+import com.socialcoding.api.common.assembler.ObjectAssembler;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +21,8 @@ import java.util.Map;
 @Slf4j
 @RestController
 public class CctvDetailController {
-	private static final Type TYPE_COMMENT_DTO = new TypeToken<List<CommentDto>>() {}.getType();
-
+    @Autowired
+    private ObjectAssembler assembler;
 	@Autowired
 	private CctvService cctvService;
 	@Autowired
@@ -33,12 +31,12 @@ public class CctvDetailController {
     @RequestMapping(value = "/cctv/{cctvId}", method = RequestMethod.GET)
     public Map<String, Object> getCctv(@PathVariable Long cctvId) {
 		Cctv cctv = cctvService.getCctvById(cctvId);
-		CctvDetailDto cctvDetailDto = ObjectMapper.map(cctv, CctvDetailDto.class);
+		CctvDetailDto cctvDetailDto = assembler.assemble(cctv, CctvDetailDto.class);
 
 		List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId);
 		CommentBundleDto commentBundleDto = new CommentBundleDto();
 		commentBundleDto.setNextCommentId(commentService.getNextRequestCommentId(comments));
-		commentBundleDto.setComments(ObjectMapper.map(comments, TYPE_COMMENT_DTO));
+		commentBundleDto.setComments(assembler.assemble(comments, CommentDto.class));
 
         return new HashMap<String, Object>() {
             {

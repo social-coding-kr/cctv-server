@@ -5,7 +5,7 @@ import com.socialcoding.api.cctv.model.Cctv;
 import com.socialcoding.api.cctv.service.CctvService;
 import com.socialcoding.api.common.ResponseStatus;
 import com.socialcoding.api.common.validation.Validations;
-import com.socialcoding.api.common.assemble.ObjectMapper;
+import com.socialcoding.api.common.assembler.ObjectAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,17 +17,20 @@ import java.util.Map;
 @RestController
 public class CctvRegistrationController {
     @Autowired
+    private ObjectAssembler assembler;
+    @Autowired
     private CctvService cctvService;
 
     @RequestMapping(value = "/cctv", method = RequestMethod.POST)
-    public Map<String, Object> registerCctv(@Valid CctvRegistrationDto cctvRegistrationDto,
-                                            @RequestParam("cctvImage") MultipartFile cctvImage,
-                                            @RequestParam(value = "noticeImage", required = false) MultipartFile noticeImage) {
+    public Map<String, Object> registerCctv(
+            @Valid CctvRegistrationDto cctvRegistrationDto,
+            @RequestParam("cctvImage") MultipartFile cctvImage,
+            @RequestParam(value = "noticeImage", required = false) MultipartFile noticeImage) {
 
         Validations.validateImageType(cctvImage);
         Validations.validateImageType(noticeImage);
 
-        Cctv cctv = ObjectMapper.map(cctvRegistrationDto);
+        Cctv cctv = assembler.assemble(cctvRegistrationDto, Cctv.class);
         //TODO save image file
         Cctv registeredCctv = cctvService.registerCctv(cctv);
 
