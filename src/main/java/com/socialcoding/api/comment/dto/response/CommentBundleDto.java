@@ -1,0 +1,13 @@
+package com.socialcoding.api.comment.dto.response;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
+public class CommentBundleDto {
+    private long nextCommentId;
+    private List<CommentDto> comments;
+}
