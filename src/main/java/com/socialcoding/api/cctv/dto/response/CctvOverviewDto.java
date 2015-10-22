@@ -1,5 +1,6 @@
 package com.socialcoding.api.cctv.dto.response;
 
+import com.socialcoding.api.cctv.model.CctvSource;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,4 +13,5 @@ public class CctvOverviewDto {
     private BigDecimal latitude;
     private BigDecimal longitude;
     private String purpose;
+    private CctvSource source;
 }
