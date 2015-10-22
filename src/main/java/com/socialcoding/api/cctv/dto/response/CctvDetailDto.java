@@ -1,17 +1,13 @@
 package com.socialcoding.api.cctv.dto.response;
 
-import com.socialcoding.api.cctv.model.CctvSource;
+import com.socialcoding.api.comment.dto.response.CommentBundleDto;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Getter
 @Setter
-public class CctvDetailDto {
-    private long cctvId;
-    private String address;
-    private String cctvImage;
-    private String noticeImage;
-    private String purpose;
-    private CctvSource source;
+public class CctvDetailDto extends AbstractResponse {
+    private CctvDto cctv;
+    private CommentBundleDto comments;
 }
