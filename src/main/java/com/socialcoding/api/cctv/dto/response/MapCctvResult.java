@@ -7,6 +7,6 @@ import java.util.List;
 
 @Getter
 @Setter
-public class MapCctvDto extends AbstractResponse {
+public class MapCctvResult extends AbstractResponse {
     private List<CctvOverviewDto> cctvs;
 }

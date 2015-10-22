@@ -1,6 +1,6 @@
 package com.socialcoding.api.cctv.controller;
 
-import com.socialcoding.api.cctv.dto.response.CctvDetailDto;
+import com.socialcoding.api.cctv.dto.response.CctvDetailResult;
 import com.socialcoding.api.cctv.service.CctvFacadeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class CctvDetailController {
     private CctvFacadeService cctvFacadeService;
 
     @RequestMapping(value = "/cctv/{cctvId}", method = RequestMethod.GET)
-    public CctvDetailDto getCctv(@PathVariable Long cctvId) {
+    public CctvDetailResult getCctv(@PathVariable Long cctvId) {
         return cctvFacadeService.getCctvDetail(cctvId);
     }
 }

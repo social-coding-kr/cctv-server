@@ -1,28 +1,22 @@
 package com.socialcoding.api.cctv.controller;
 
 import com.socialcoding.api.cctv.dto.request.CctvRegistrationDto;
-import com.socialcoding.api.cctv.model.Cctv;
-import com.socialcoding.api.cctv.service.CctvService;
-import com.socialcoding.api.common.ResponseStatus;
+import com.socialcoding.api.cctv.dto.response.CctvRegistrationResult;
+import com.socialcoding.api.cctv.service.CctvFacadeService;
 import com.socialcoding.api.common.validation.Validations;
-import com.socialcoding.api.common.assembler.ObjectAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class CctvRegistrationController {
     @Autowired
-    private ObjectAssembler assembler;
-    @Autowired
-    private CctvService cctvService;
+    private CctvFacadeService cctvFacadeService;
 
     @RequestMapping(value = "/cctv", method = RequestMethod.POST)
-    public Map<String, Object> registerCctv(
+    public CctvRegistrationResult registerCctv(
             @Valid CctvRegistrationDto cctvRegistrationDto,
             @RequestParam("cctvImage") MultipartFile cctvImage,
             @RequestParam(value = "noticeImage", required = false) MultipartFile noticeImage) {
@@ -30,15 +24,7 @@ public class CctvRegistrationController {
         Validations.validateImageType(cctvImage);
         Validations.validateImageType(noticeImage);
 
-        Cctv cctv = assembler.assemble(cctvRegistrationDto, Cctv.class);
-        //TODO save image file
-        Cctv registeredCctv = cctvService.registerCctv(cctv);
+        return cctvFacadeService.registerCctv(cctvRegistrationDto, cctvImage, noticeImage);
 
-        return new HashMap<String, Object>() {
-            {
-                put("status", ResponseStatus.SUCCESS);
-                put("cctvId", registeredCctv.getCctvId());
-            }
-        };
     }
 }

@@ -1,10 +1,8 @@
 package com.socialcoding.api.cctv.service;
 
+import com.socialcoding.api.cctv.dto.request.CctvRegistrationDto;
 import com.socialcoding.api.cctv.dto.request.MapPositionDto;
-import com.socialcoding.api.cctv.dto.response.CctvDetailDto;
-import com.socialcoding.api.cctv.dto.response.CctvDto;
-import com.socialcoding.api.cctv.dto.response.CctvOverviewDto;
-import com.socialcoding.api.cctv.dto.response.MapCctvDto;
+import com.socialcoding.api.cctv.dto.response.*;
 import com.socialcoding.api.cctv.model.Cctv;
 import com.socialcoding.api.cctv.model.Position;
 import com.socialcoding.api.comment.dto.response.CommentBundleDto;
@@ -15,9 +13,9 @@ import com.socialcoding.api.common.ResponseStatus;
 import com.socialcoding.api.common.assembler.ObjectAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class CctvFacadeService {
@@ -28,7 +26,7 @@ public class CctvFacadeService {
     @Autowired
     private CommentService commentService;
 
-    public CctvDetailDto getCctvDetail(Long cctvId) {
+    public CctvDetailResult getCctvDetail(Long cctvId) {
         Cctv cctv = cctvService.getCctvById(cctvId);
         CctvDto cctvDto = assembler.assemble(cctv, CctvDto.class);
 
@@ -37,22 +35,33 @@ public class CctvFacadeService {
         commentBundleDto.setNextCommentId(commentService.getNextRequestCommentId(comments));
         commentBundleDto.setComments(assembler.assemble(comments, CommentDto.class));
 
-        CctvDetailDto cctvDetailDto = new CctvDetailDto();
-        cctvDetailDto.setStatus(ResponseStatus.SUCCESS);
-        cctvDetailDto.setCctv(cctvDto);
-        cctvDetailDto.setComments(commentBundleDto);
-        return cctvDetailDto;
+        CctvDetailResult cctvDetailResult = new CctvDetailResult();
+        cctvDetailResult.setStatus(ResponseStatus.SUCCESS);
+        cctvDetailResult.setCctv(cctvDto);
+        cctvDetailResult.setComments(commentBundleDto);
+        return cctvDetailResult;
     }
 
-    public MapCctvDto listCctvBetween(MapPositionDto positions) {
+    public MapCctvResult listCctvBetween(MapPositionDto positions) {
         Position southWest = Position.of(positions.getSouth(), positions.getWest());
         Position northEast = Position.of(positions.getNorth(), positions.getEast());
         List<Cctv> cctvs = cctvService.listCctvBetween(southWest, northEast);
         List<CctvOverviewDto> cctvOverviewDtos = assembler.assemble(cctvs, CctvOverviewDto.class);
 
-        MapCctvDto mapCctvDto = new MapCctvDto();
-        mapCctvDto.setStatus(ResponseStatus.SUCCESS);
-        mapCctvDto.setCctvs(cctvOverviewDtos);
-        return mapCctvDto;
+        MapCctvResult mapCctvResult = new MapCctvResult();
+        mapCctvResult.setStatus(ResponseStatus.SUCCESS);
+        mapCctvResult.setCctvs(cctvOverviewDtos);
+        return mapCctvResult;
+    }
+
+    public CctvRegistrationResult registerCctv(CctvRegistrationDto cctvRegistrationDto, MultipartFile cctvImage, MultipartFile noticeImage) {
+        Cctv cctv = assembler.assemble(cctvRegistrationDto, Cctv.class);
+        //TODO save image file
+        Cctv registeredCctv = cctvService.registerCctv(cctv);
+
+        CctvRegistrationResult result = new CctvRegistrationResult();
+        result.setStatus(ResponseStatus.SUCCESS);
+        result.setCctvId(registeredCctv.getCctvId());
+        return result;
     }
 }

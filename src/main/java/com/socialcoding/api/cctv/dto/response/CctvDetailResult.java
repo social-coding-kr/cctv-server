@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CctvDetailDto extends AbstractResponse {
+public class CctvDetailResult extends AbstractResponse {
     private CctvDto cctv;
     private CommentBundleDto comments;
 }
