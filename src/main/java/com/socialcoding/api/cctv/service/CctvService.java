@@ -25,9 +25,9 @@ public class CctvService {
 
 	@Transactional(value = "transactionManager", readOnly = false)
 	public Cctv registerCctv(Cctv cctv) {
-		cctv.setSource(CctvSource.USER);
+		cctv.setSource(CctvSource.PRIVATE);
 		cctv.setModifiedBy(cctv.getCreatedBy());
-		cctv.setCctvName(CctvSource.USER.name());
+		cctv.setCctvName(CctvSource.PRIVATE.name());
 		return cctvRepository.save(cctv);
 	}
 

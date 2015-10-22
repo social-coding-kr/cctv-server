@@ -30,11 +30,10 @@ public class Cctv {
     @Column(name = "cctvName", nullable = false)
     private String cctvName;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "purpose", nullable = false)
-    private CctvPurpose purpose;
+    private String purpose;
 
-    @Column(name = "address", nullable = true)
+    @Column(name = "address")
     private String address;
 
     @Column(name = "borough")
@@ -43,15 +42,30 @@ public class Cctv {
     @Column(name = "dong")
     private String dong;
 
-    @Column(name = "cctvImage", nullable = true)
+    @Column(name = "cctvImage")
     private String cctvImage;
 
-    @Column(name = "noticeImage", nullable = true)
+    @Column(name = "noticeImage")
     private String noticeImage;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "source", nullable = false)
     private CctvSource source;
+
+    @Column(name = "range")
+    private String range;
+
+    @Column(name = "department")
+    private String department;
+
+    @Column(name = "pixel")
+    private String pixel;
+
+    @Column(name = "form")
+    private String form;
+
+    @Column(name = "installedAt")
+    private String installedAt;
 
     @Column(name = "createdBy")
     private String createdBy;

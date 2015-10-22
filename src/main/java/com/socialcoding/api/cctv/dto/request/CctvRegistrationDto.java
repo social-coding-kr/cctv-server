@@ -1,6 +1,5 @@
 package com.socialcoding.api.cctv.dto.request;
 
-import com.socialcoding.api.cctv.model.CctvPurpose;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
@@ -16,7 +15,7 @@ public class CctvRegistrationDto {
     @NotNull
     private BigDecimal longitude;
     @NotNull
-    private CctvPurpose purpose;
+    private String purpose;
     @NotBlank
     private String userId;
 }

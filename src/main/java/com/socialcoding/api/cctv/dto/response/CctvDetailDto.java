@@ -1,6 +1,5 @@
 package com.socialcoding.api.cctv.dto.response;
 
-import com.socialcoding.api.cctv.model.CctvPurpose;
 import com.socialcoding.api.cctv.model.CctvSource;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +12,6 @@ public class CctvDetailDto {
     private String address;
     private String cctvImage;
     private String noticeImage;
-    private CctvPurpose purpose;
+    private String purpose;
     private CctvSource source;
 }
