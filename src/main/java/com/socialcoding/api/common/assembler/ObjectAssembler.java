@@ -58,8 +58,7 @@ public class ObjectAssembler {
         if (assemblers.containsKey(key)) {
             return (List<T>) assemblers.get(key).assemble(from);
         } else {
-            Type toType = new TypeToken<List<T>>() {}.getType();
-            return DefaultAssembler.assemble(from, toType);
+            return DefaultAssembler.assemble(from, to);
         }
     }
 

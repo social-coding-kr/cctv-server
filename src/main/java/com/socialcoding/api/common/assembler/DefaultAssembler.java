@@ -3,6 +3,7 @@ package com.socialcoding.api.common.assembler;
 import org.modelmapper.ModelMapper;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DefaultAssembler {
@@ -12,7 +13,12 @@ public class DefaultAssembler {
         return MAPPER.map(source, targetClass);
     }
 
-    public static <F, T> List<T> assemble(List<F> source, Type type) {
-        return MAPPER.map(source, type);
+    public static <F, T> List<T> assemble(List<F> source, Class<T> targetClass) {
+        List<T> target = new ArrayList<>();
+        for(F f : source) {
+            T t = MAPPER.map(f, targetClass);
+            target.add(t);
+        }
+        return target;
     }
 }
