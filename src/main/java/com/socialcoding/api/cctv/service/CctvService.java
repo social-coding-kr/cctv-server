@@ -18,7 +18,7 @@ import java.util.List;
 public class CctvService {
 	private static final String CCTV_IMAGE_PATH = "/cctv/images/cctv-images";
 	private static final String NOTICE_IMAGE_PATH = "/cctv/images/notice-images";
-	private static final String BASE_URL = "http://147.46.215.150:8099/images";
+	private static final String BASE_URL = "http://localhost:8099/images";
 
 	@Autowired
 	private ImageService imageService;
