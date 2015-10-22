@@ -56,7 +56,10 @@ public class CctvFacadeService {
 
     public CctvRegistrationResult registerCctv(CctvRegistrationDto cctvRegistrationDto, MultipartFile cctvImage, MultipartFile noticeImage) {
         Cctv cctv = assembler.assemble(cctvRegistrationDto, Cctv.class);
-        //TODO save image file
+        String cctvImageUrl = cctvService.saveCctvImage(cctvImage);
+        String noticeImageUrl = cctvService.saveNoticeImage(noticeImage);
+        cctv.setCctvImage(cctvImageUrl);
+        cctv.setNoticeImage(noticeImageUrl);
         Cctv registeredCctv = cctvService.registerCctv(cctv);
 
         CctvRegistrationResult result = new CctvRegistrationResult();
