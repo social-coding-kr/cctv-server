@@ -24,12 +24,14 @@ public class CctvFacadeService {
     @Autowired
     private ObjectAssembler assembler;
     @Autowired
-    private CctvService cctvService;
+    private CctvQueryService cctvQueryService;
+	@Autowired
+	private CctvCommandService cctvCommandService;
     @Autowired
     private CommentService commentService;
 
     public CctvDetailResult getCctvDetail(Long cctvId) {
-        Cctv cctv = cctvService.getCctvById(cctvId);
+        Cctv cctv = cctvQueryService.getCctvById(cctvId);
         CctvDto cctvDto = assembler.assemble(cctv, CctvDto.class);
 
         List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId);
@@ -47,7 +49,7 @@ public class CctvFacadeService {
     public MapCctvResult listCctvBetween(MapPositionForm positions) {
         Position southWest = Position.of(positions.getSouth(), positions.getWest());
         Position northEast = Position.of(positions.getNorth(), positions.getEast());
-        List<Cctv> cctvs = cctvService.listCctvBetween(southWest, northEast);
+        List<Cctv> cctvs = cctvQueryService.listCctvBetween(southWest, northEast);
         List<CctvOverviewDto> cctvOverviewDtos = assembler.assemble(cctvs, CctvOverviewDto.class);
 
         MapCctvResult mapCctvResult = new MapCctvResult();
@@ -57,7 +59,7 @@ public class CctvFacadeService {
     }
 
     public CctvRegistrationResult registerPrivateCctv(CctvRegistrationForm form, MultipartFile cctvImage, MultipartFile noticeImage) {
-		Cctv cctv = cctvService.registerPrivateCctv(form, cctvImage, noticeImage);
+		Cctv cctv = cctvCommandService.registerPrivateCctv(form, cctvImage, noticeImage);
 
 		CctvRegistrationResult result = new CctvRegistrationResult();
         result.setStatus(ResponseStatus.SUCCESS);

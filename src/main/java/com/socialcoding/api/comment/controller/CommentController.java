@@ -7,7 +7,7 @@ import com.socialcoding.api.comment.dto.request.CommentWriteDto;
 import com.socialcoding.api.comment.dto.response.CommentBundleDto;
 import com.socialcoding.api.comment.dto.response.CommentDto;
 import com.socialcoding.api.comment.model.Comment;
-import com.socialcoding.api.cctv.service.CctvService;
+import com.socialcoding.api.cctv.service.CctvQueryService;
 import com.socialcoding.api.comment.service.CommentService;
 import com.socialcoding.api.common.ResponseStatus;
 import com.socialcoding.api.common.assembler.ObjectAssembler;
@@ -29,7 +29,7 @@ public class CommentController {
     @Autowired
     private ObjectAssembler assembler;
     @Autowired
-    private CctvService cctvService;
+    private CctvQueryService cctvQueryService;
     @Autowired
     private CommentService commentService;
 
@@ -50,7 +50,7 @@ public class CommentController {
 
     @RequestMapping(value = "/cctv/{cctvId}/comment", method = RequestMethod.POST)
     public Map<String, Object> writeComment(@PathVariable Long cctvId, @RequestBody @Valid CommentWriteDto commentWriteDto) {
-        Cctv cctv = cctvService.getCctvById(cctvId);
+        Cctv cctv = cctvQueryService.getCctvById(cctvId);
         Comment comment = assembler.assemble(commentWriteDto, Comment.class);
         comment.setCctv(cctv);
         commentService.writeComment(comment);
