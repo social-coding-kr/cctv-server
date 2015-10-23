@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class MapPositionDto {
+public class MapPositionForm {
     @NotNull
     private BigDecimal south;
     @NotNull

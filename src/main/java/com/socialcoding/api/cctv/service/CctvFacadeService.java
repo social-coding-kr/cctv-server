@@ -1,7 +1,7 @@
 package com.socialcoding.api.cctv.service;
 
 import com.socialcoding.api.cctv.dto.request.CctvRegistrationForm;
-import com.socialcoding.api.cctv.dto.request.MapPositionDto;
+import com.socialcoding.api.cctv.dto.request.MapPositionForm;
 import com.socialcoding.api.cctv.dto.response.*;
 import com.socialcoding.api.cctv.model.Cctv;
 import com.socialcoding.api.cctv.model.Position;
@@ -44,7 +44,7 @@ public class CctvFacadeService {
         return cctvDetailResult;
     }
 
-    public MapCctvResult listCctvBetween(MapPositionDto positions) {
+    public MapCctvResult listCctvBetween(MapPositionForm positions) {
         Position southWest = Position.of(positions.getSouth(), positions.getWest());
         Position northEast = Position.of(positions.getNorth(), positions.getEast());
         List<Cctv> cctvs = cctvService.listCctvBetween(southWest, northEast);
