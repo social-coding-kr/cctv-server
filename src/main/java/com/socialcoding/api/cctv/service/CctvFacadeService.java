@@ -11,12 +11,14 @@ import com.socialcoding.api.comment.model.Comment;
 import com.socialcoding.api.comment.service.CommentService;
 import com.socialcoding.api.common.ResponseStatus;
 import com.socialcoding.api.common.assembler.ObjectAssembler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class CctvFacadeService {
     @Autowired
@@ -56,8 +58,12 @@ public class CctvFacadeService {
 
     public CctvRegistrationResult registerCctv(CctvRegistrationDto cctvRegistrationDto, MultipartFile cctvImage, MultipartFile noticeImage) {
         Cctv cctv = assembler.assemble(cctvRegistrationDto, Cctv.class);
+
         String cctvImageUrl = cctvService.saveCctvImage(cctvImage);
         String noticeImageUrl = cctvService.saveNoticeImage(noticeImage);
+		log.debug("cctv image url: {}", cctvImageUrl);
+		log.debug("notice image url: {}", cctvImageUrl);
+
         cctv.setCctvImage(cctvImageUrl);
         cctv.setNoticeImage(noticeImageUrl);
         Cctv registeredCctv = cctvService.registerCctv(cctv);

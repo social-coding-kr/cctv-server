@@ -5,20 +5,25 @@ import com.socialcoding.api.cctv.model.Cctv;
 import com.socialcoding.api.cctv.model.CctvSource;
 import com.socialcoding.api.cctv.model.Position;
 import com.socialcoding.api.cctv.repository.CctvRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional(value = "transactionManager", readOnly = true)
 public class CctvService {
-	private static final String CCTV_IMAGE_PATH = "/cctv/images/cctv-images";
-	private static final String NOTICE_IMAGE_PATH = "/cctv/images/notice-images";
-	private static final String BASE_URL = "http://localhost:8077/images";
+	@Value("${image.path.cctv}")
+	private String cctvImagePath;
+	@Value("${image.path.notice}")
+	private String noticeImagePath;
+	@Value("${image.url.base}")
+	private String baseUrl;
 
 	@Autowired
 	private ImageService imageService;
@@ -44,12 +49,17 @@ public class CctvService {
 	}
 
 	public String saveCctvImage(MultipartFile cctvImage) {
-		String filename = imageService.saveImage(cctvImage, CCTV_IMAGE_PATH);
-		return new StringBuilder(BASE_URL).append("/cctvs/").append(filename).toString();
+		String filename = imageService.saveImage(cctvImage, cctvImagePath);
+		log.debug("cctv image filename: {}", filename);
+		return new StringBuilder(baseUrl).append("cctvs/").append(filename).toString();
 	}
 
 	public String saveNoticeImage(MultipartFile noticeImage) {
-		String filename = imageService.saveImage(noticeImage, NOTICE_IMAGE_PATH);
-		return new StringBuilder(BASE_URL).append("/notices/").append(filename).toString();
+		if (noticeImage == null) {
+			return null;
+		}
+		String filename = imageService.saveImage(noticeImage, noticeImagePath);
+		log.debug("notice image filename: {}", filename);
+		return new StringBuilder(baseUrl).append("notices/").append(filename).toString();
 	}
 }

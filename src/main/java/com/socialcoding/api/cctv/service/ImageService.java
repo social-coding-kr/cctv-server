@@ -25,9 +25,8 @@ public class ImageService {
 
         try {
             String filename = genFilename(file);
-            String filePath = path + filename;
-            file.transferTo(new File(filePath));
-            return filePath;
+			file.transferTo(new File(path + filename));
+            return filename;
         } catch (IOException | NoSuchAlgorithmException e) {
             //TODO exception handling
             log.error("File save failed", e);

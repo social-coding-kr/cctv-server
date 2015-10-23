@@ -52,7 +52,7 @@ public class Cctv {
     @Column(name = "source", nullable = false)
     private CctvSource source;
 
-    @Column(name = "range")
+    @Column(name = "\"range\"")
     private String range;
 
     @Column(name = "department")
