@@ -4,10 +4,9 @@ import com.socialcoding.api.cctv.model.CctvSource;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class CctvDetailDto {
+public class CctvDto {
     private long cctvId;
     private String address;
     private String cctvImage;

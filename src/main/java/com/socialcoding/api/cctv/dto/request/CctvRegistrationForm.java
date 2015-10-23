@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class CctvRegistrationDto {
+public class CctvRegistrationForm {
     @NotNull
     private BigDecimal latitude;
     @NotNull

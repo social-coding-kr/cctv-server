@@ -55,6 +55,9 @@ dependencies {
 
     compile("org.modelmapper:modelmapper:0.7.4")
     compile("org.apache.commons:commons-lang3:3.4")
+    compile("commons-io:commons-io:2.4")
+    compile("commons-codec:commons-codec:1.10")
+
 
     compile("com.google.guava:guava:19.0-rc1")
     compile("org.projectlombok:lombok:1.16.4")
