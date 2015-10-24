@@ -1,12 +1,15 @@
 package com.socialcoding.api.cctv.service;
 
-import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.imgscalr.Scalr;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -17,22 +20,28 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class ImageService {
 
-    private AtomicInteger atomicInteger = new AtomicInteger();
+	private static final int MAX_SIZE = 300;
 
-    public String saveImage(MultipartFile file, String path) {
-		Preconditions.checkArgument(file != null, "Image file is not attached");
+	private AtomicInteger atomicInteger = new AtomicInteger();
 
-        try {
-            String filename = genFilename(file);
-			String filePath = path + filename;
+    public String saveImage(MultipartFile image, String path) {
+		if (image == null || StringUtils.isEmpty(image.getOriginalFilename())) {
+			return null;
+		}
+
+		try {
+			BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
+			BufferedImage resized = resizeImage(bufferedImage);
+			String filename = genFilename(image);
+			String filePath = FilenameUtils.normalize(path + filename);
+			ImageIO.write(resized, FilenameUtils.getExtension(filePath), new File(filePath));
 			log.debug("image saved: {}", filePath);
-			file.transferTo(new File(filePath));
-            return filename;
-        } catch (IOException | NoSuchAlgorithmException e) {
-            //TODO exception handling
-            log.error("File save failed", e);
-            throw new RuntimeException("File save failed", e);
-        }
+			return filename;
+		} catch (IOException | NoSuchAlgorithmException e) {
+			//TODO exception handling
+			log.error("File save failed", e);
+			throw new RuntimeException("File save failed", e);
+		}
     }
 
     private String genFilename(MultipartFile file) throws NoSuchAlgorithmException {
@@ -45,4 +54,9 @@ public class ImageService {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
         return filename + "." + extension;
     }
+
+	private BufferedImage resizeImage(BufferedImage image) {
+		Scalr.Mode mode = image.getWidth() > image.getHeight() ? Scalr.Mode.FIT_TO_WIDTH : Scalr.Mode.FIT_TO_HEIGHT;
+		return Scalr.resize(image, Scalr.Method.BALANCED, mode, MAX_SIZE);
+	}
 }
