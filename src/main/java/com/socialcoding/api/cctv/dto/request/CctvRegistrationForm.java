@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class CctvRegistrationForm {
     @NotNull
     private BigDecimal latitude;
-    @NotNull
+
     private BigDecimal longitude;
     @NotNull
     private String purpose;
