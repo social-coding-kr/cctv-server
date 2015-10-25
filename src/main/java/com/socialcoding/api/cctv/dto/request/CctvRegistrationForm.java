@@ -14,8 +14,6 @@ public class CctvRegistrationForm {
     private BigDecimal latitude;
     @NotNull
     private BigDecimal longitude;
-    @NotNull
+
     private String purpose;
-    @NotBlank
-    private String userId;
 }

@@ -21,8 +21,7 @@ public class CctvRegistrationController {
 		@RequestParam("cctvImage") MultipartFile cctvImage,
 		@RequestParam(value = "noticeImage", required = false) MultipartFile noticeImage) {
 
-        Validations.validateImage(cctvImage, false);
-        Validations.validateImage(noticeImage, true);
+        Validations.validateImage(cctvImage);
 
         return cctvFacadeService.registerPrivateCctv(cctvRegistrationForm, cctvImage, noticeImage);
 

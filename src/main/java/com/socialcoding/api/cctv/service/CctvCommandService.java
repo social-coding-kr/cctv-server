@@ -5,6 +5,7 @@ import com.socialcoding.api.cctv.model.Cctv;
 import com.socialcoding.api.cctv.model.CctvSource;
 import com.socialcoding.api.cctv.repository.CctvRepository;
 import com.socialcoding.api.common.assembler.ObjectAssembler;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class CctvCommandService {
 	private CctvRepository cctvRepository;
 
 	private String saveImage(MultipartFile image, String imagePath, String imageUrlMiddle) {
-		if (image == null) {
+		if (image == null || StringUtils.isEmpty(image.getOriginalFilename())) {
 			return null;
 		}
 
@@ -45,7 +46,8 @@ public class CctvCommandService {
 		cctv.setCctvImage(cctvImageUrl);
 		cctv.setNoticeImage(noticeImageUrl);
 		cctv.setSource(CctvSource.PRIVATE);
-		cctv.setModifiedBy(cctv.getCreatedBy());
+		cctv.setCreatedBy("test-user");
+		cctv.setModifiedBy("test-user");
 		cctv.setCctvName(CctvSource.PRIVATE.name());
 
 		return cctvRepository.save(cctv);

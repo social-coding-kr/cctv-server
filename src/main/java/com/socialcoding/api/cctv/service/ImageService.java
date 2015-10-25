@@ -25,10 +25,6 @@ public class ImageService {
 	private AtomicInteger atomicInteger = new AtomicInteger();
 
     public String saveImage(MultipartFile image, String path) {
-		if (image == null || StringUtils.isEmpty(image.getOriginalFilename())) {
-			return null;
-		}
-
 		try {
 			BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
 			BufferedImage resized = resizeImage(bufferedImage);
