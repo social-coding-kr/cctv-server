@@ -3,7 +3,6 @@ package com.socialcoding.api.cctv.service;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.imgscalr.Scalr;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class ImageService {
 
-	private static final int MAX_SIZE = 300;
+	private static final int MAX_SIZE = 400;
 
 	private AtomicInteger atomicInteger = new AtomicInteger();
 
@@ -53,6 +52,6 @@ public class ImageService {
 
 	private BufferedImage resizeImage(BufferedImage image) {
 		Scalr.Mode mode = image.getWidth() > image.getHeight() ? Scalr.Mode.FIT_TO_WIDTH : Scalr.Mode.FIT_TO_HEIGHT;
-		return Scalr.resize(image, Scalr.Method.BALANCED, mode, MAX_SIZE);
+		return Scalr.resize(image, Scalr.Method.QUALITY, mode, MAX_SIZE);
 	}
 }
