@@ -1,6 +1,6 @@
-package com.socialcoding.api.common.dto;
+package com.socialcoding.api.base.dto;
 
-import com.socialcoding.api.common.ResponseStatus;
+import com.socialcoding.api.base.ResponseStatus;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package com.socialcoding.api.common;
+package com.socialcoding.api.base;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

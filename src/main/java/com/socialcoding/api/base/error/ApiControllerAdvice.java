@@ -1,4 +1,4 @@
-package com.socialcoding.api.common.error;
+package com.socialcoding.api.base.error;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class ApiControllerAdvice {
 
         return new HashMap<String, Object>() {
             {
-                put("status", com.socialcoding.api.common.ResponseStatus.FAILURE);
+                put("status", com.socialcoding.api.base.ResponseStatus.FAILURE);
                 put("errorCode", HttpStatus.BAD_REQUEST.value());
                 put("errorMessage", exception.getMessage());
             }
@@ -38,7 +38,7 @@ public class ApiControllerAdvice {
 
         return new HashMap<String, Object>() {
             {
-                put("status", com.socialcoding.api.common.ResponseStatus.FAILURE);
+                put("status", com.socialcoding.api.base.ResponseStatus.FAILURE);
                 put("errorCode", HttpStatus.INTERNAL_SERVER_ERROR.value());
                 put("errorMessage", exception.getMessage());
             }

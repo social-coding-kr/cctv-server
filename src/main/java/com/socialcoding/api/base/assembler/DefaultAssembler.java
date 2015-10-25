@@ -1,10 +1,9 @@
-package com.socialcoding.api.common.assembler;
+package com.socialcoding.api.base.assembler;
 
 import org.modelmapper.ModelMapper;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DefaultAssembler {
     private static final ModelMapper MAPPER = new ModelMapper();
@@ -14,11 +13,6 @@ public class DefaultAssembler {
     }
 
     public static <F, T> List<T> assemble(List<F> source, Class<T> targetClass) {
-        List<T> target = new ArrayList<>();
-        for(F f : source) {
-            T t = MAPPER.map(f, targetClass);
-            target.add(t);
-        }
-        return target;
+		return source.stream().map(f -> DefaultAssembler.assemble(f, targetClass)).collect(Collectors.toList());
     }
 }

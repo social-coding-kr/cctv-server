@@ -2,7 +2,7 @@ package com.socialcoding.api.comment.assembler;
 
 import com.socialcoding.api.comment.dto.request.CommentWriteDto;
 import com.socialcoding.api.comment.model.Comment;
-import com.socialcoding.api.common.assembler.AbstractAssembler;
+import com.socialcoding.api.base.assembler.AbstractAssembler;
 import org.springframework.stereotype.Component;
 
 @Component

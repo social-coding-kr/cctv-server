@@ -1,6 +1,6 @@
 package com.socialcoding.api.cctv.model;
 
-import com.socialcoding.api.common.model.BaseEntity;
+import com.socialcoding.api.base.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

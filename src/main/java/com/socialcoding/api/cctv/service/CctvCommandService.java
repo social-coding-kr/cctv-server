@@ -4,7 +4,7 @@ import com.socialcoding.api.cctv.dto.request.CctvRegistrationForm;
 import com.socialcoding.api.cctv.model.Cctv;
 import com.socialcoding.api.cctv.model.PrivateCctv;
 import com.socialcoding.api.cctv.repository.CctvRepository;
-import com.socialcoding.api.common.assembler.ObjectAssembler;
+import com.socialcoding.api.base.assembler.ObjectAssembler;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
 package com.socialcoding.api.cctv.dto.response;
 
-import com.socialcoding.api.common.dto.AbstractResponse;
+import com.socialcoding.api.base.dto.AbstractResponse;
 import lombok.Getter;
 import lombok.Setter;
 

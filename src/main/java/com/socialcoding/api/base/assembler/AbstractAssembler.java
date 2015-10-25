@@ -1,4 +1,4 @@
-package com.socialcoding.api.common.assembler;
+package com.socialcoding.api.base.assembler;
 
 import java.util.List;
 import java.util.stream.Collectors;

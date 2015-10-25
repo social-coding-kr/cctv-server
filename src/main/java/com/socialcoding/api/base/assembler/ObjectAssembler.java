@@ -1,15 +1,13 @@
-package com.socialcoding.api.common.assembler;
+package com.socialcoding.api.base.assembler;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

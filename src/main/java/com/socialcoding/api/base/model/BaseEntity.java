@@ -1,4 +1,4 @@
-package com.socialcoding.api.common.model;
+package com.socialcoding.api.base.model;
 
 import lombok.Getter;
 import lombok.Setter;
