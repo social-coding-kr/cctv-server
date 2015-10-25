@@ -2,7 +2,7 @@ package com.socialcoding.api.cctv.service;
 
 import com.socialcoding.api.cctv.dto.request.CctvRegistrationForm;
 import com.socialcoding.api.cctv.model.Cctv;
-import com.socialcoding.api.cctv.model.CctvSource;
+import com.socialcoding.api.cctv.model.PrivateCctv;
 import com.socialcoding.api.cctv.repository.CctvRepository;
 import com.socialcoding.api.common.assembler.ObjectAssembler;
 import org.apache.commons.lang3.StringUtils;
@@ -42,13 +42,11 @@ public class CctvCommandService {
 		String cctvImageUrl = saveImage(cctvImage, cctvImagePath, "cctvs/");
 		String noticeImageUrl = saveImage(noticeImage, noticeImagePath, "notices/");
 
-		Cctv cctv = assembler.assemble(form, Cctv.class);
+		PrivateCctv cctv = assembler.assemble(form, PrivateCctv.class);
 		cctv.setCctvImage(cctvImageUrl);
 		cctv.setNoticeImage(noticeImageUrl);
-		cctv.setSource(CctvSource.PRIVATE);
 		cctv.setCreatedBy("test-user");
 		cctv.setModifiedBy("test-user");
-		cctv.setCctvName(CctvSource.PRIVATE.name());
 
 		return cctvRepository.save(cctv);
 	}

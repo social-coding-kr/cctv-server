@@ -12,6 +12,5 @@ public class CctvOverviewDto {
     private long cctvId;
     private BigDecimal latitude;
     private BigDecimal longitude;
-    private String purpose;
     private CctvSource source;
 }

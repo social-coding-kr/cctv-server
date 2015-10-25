@@ -1,4 +1,4 @@
-package com.socialcoding.api.cctv.dto.response;
+package com.socialcoding.api.common.dto;
 
 import com.socialcoding.api.common.ResponseStatus;
 import lombok.Getter;

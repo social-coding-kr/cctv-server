@@ -5,9 +5,8 @@ import com.socialcoding.api.cctv.dto.request.MapPositionForm;
 import com.socialcoding.api.cctv.dto.response.*;
 import com.socialcoding.api.cctv.model.Cctv;
 import com.socialcoding.api.cctv.model.Position;
-import com.socialcoding.api.comment.dto.response.CommentBundleDto;
-import com.socialcoding.api.comment.dto.response.CommentDto;
-import com.socialcoding.api.comment.model.Comment;
+import com.socialcoding.api.cctv.model.PrivateCctv;
+import com.socialcoding.api.cctv.model.PublicCctv;
 import com.socialcoding.api.comment.service.CommentService;
 import com.socialcoding.api.common.ResponseStatus;
 import com.socialcoding.api.common.assembler.ObjectAssembler;
@@ -32,17 +31,22 @@ public class CctvFacadeService {
 
     public CctvDetailResult getCctvDetail(Long cctvId) {
         Cctv cctv = cctvQueryService.getCctvById(cctvId);
-        CctvDto cctvDto = assembler.assemble(cctv, CctvDto.class);
+		CctvDto cctvDto = null;
+		if (cctv instanceof PublicCctv) {
+			cctvDto = assembler.assemble(cctv, PublicCctvDto.class);
+		} else if (cctv instanceof PrivateCctv) {
+			cctvDto = assembler.assemble(cctv, PrivateCctvDto.class);
+		}
 
-        List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId);
-        CommentBundleDto commentBundleDto = new CommentBundleDto();
-        commentBundleDto.setNextCommentId(commentService.getNextRequestCommentId(comments));
-        commentBundleDto.setComments(assembler.assemble(comments, CommentDto.class));
+//        List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId);
+//        CommentBundleDto commentBundleDto = new CommentBundleDto();
+//        commentBundleDto.setNextCommentId(commentService.getNextRequestCommentId(comments));
+//        commentBundleDto.setComments(assembler.assemble(comments, CommentDto.class));
 
         CctvDetailResult cctvDetailResult = new CctvDetailResult();
         cctvDetailResult.setStatus(ResponseStatus.SUCCESS);
         cctvDetailResult.setCctv(cctvDto);
-        cctvDetailResult.setComments(commentBundleDto);
+//        cctvDetailResult.setComments(commentBundleDto);
         return cctvDetailResult;
     }
 

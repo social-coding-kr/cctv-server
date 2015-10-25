@@ -6,11 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CctvDto {
+public abstract class CctvDto {
     private long cctvId;
-    private String address;
-    private String cctvImage;
-    private String noticeImage;
     private String purpose;
     private CctvSource source;
 }
