@@ -1,4 +1,4 @@
-package com.socialcoding.api.common;
+package com.socialcoding.api.base;
 
 public enum ResponseStatus {
     SUCCESS, FAILURE

@@ -1,4 +1,4 @@
-package com.socialcoding.api.common.validation;
+package com.socialcoding.api.base.validation;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,8 +1,7 @@
-package com.socialcoding.api.common.assembler;
+package com.socialcoding.api.base.assembler;
 
 import org.modelmapper.ModelMapper;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
