@@ -1,9 +1,7 @@
 package com.socialcoding.api.comment.model;
 
 
-import com.socialcoding.api.cctv.model.Cctv;
 import lombok.Data;
-import lombok.ToString;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -11,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@ToString(exclude = "cctv")
+//@ToString(exclude = "cctv")
 @Entity
 @Table(name = "comments")
 public class Comment {
@@ -35,8 +33,8 @@ public class Comment {
     @Generated(GenerationTime.ALWAYS)
     @Column(name = "modifiedAt", nullable = false)
     private Date modifiedAt;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cctvId")
-	private Cctv cctv;
+//
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "cctvId")
+//	private Cctv cctv;
 }

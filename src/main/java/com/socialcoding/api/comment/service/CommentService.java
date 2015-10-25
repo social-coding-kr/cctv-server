@@ -23,14 +23,16 @@ public class CommentService {
 	}
 
 	public List<Comment> getCommentsByCctvIdWithFirstPage(long cctvId, int size) {
-		return commentRepository.findByCctvIdWithFirstPage(cctvId, size);
+//		return commentRepository.findByCctvIdWithFirstPage(cctvId, size);
+		return null;
 	}
 
 	public List<Comment> getCommentsByCctvIdWithPagination(long cctvId, Long from, Integer size) {
-		if (from == null) {
-			return getCommentsByCctvIdWithFirstPage(cctvId, size);
-		}
-		return commentRepository.findByCctvIdWithPagination(cctvId, from, size);
+		return null;
+//		if (from == null) {
+//			return getCommentsByCctvIdWithFirstPage(cctvId, size);
+//		}
+//		return commentRepository.findByCctvIdWithPagination(cctvId, from, size);
 	}
 
 	public long getNextRequestCommentId(List<Comment> comments) {

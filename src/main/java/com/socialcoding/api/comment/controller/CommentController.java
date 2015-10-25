@@ -52,7 +52,7 @@ public class CommentController {
     public Map<String, Object> writeComment(@PathVariable Long cctvId, @RequestBody @Valid CommentWriteDto commentWriteDto) {
         Cctv cctv = cctvQueryService.getCctvById(cctvId);
         Comment comment = assembler.assemble(commentWriteDto, Comment.class);
-        comment.setCctv(cctv);
+//        comment.setCctv(cctv);
         commentService.writeComment(comment);
 
         List<Comment> comments = commentService.getCommentsByCctvIdWithFirstPage(cctvId, commentWriteDto.getSize());
