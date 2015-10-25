@@ -13,8 +13,6 @@ public class CctvAssembler extends AbstractAssembler<CctvRegistrationForm, Cctv>
         cctv.setLatitude(dto.getLatitude());
         cctv.setLongitude(dto.getLongitude());
         cctv.setPurpose(dto.getPurpose());
-        cctv.setCreatedBy(dto.getUserId());
-        cctv.setModifiedBy(dto.getUserId());
         return cctv;
     }
 }

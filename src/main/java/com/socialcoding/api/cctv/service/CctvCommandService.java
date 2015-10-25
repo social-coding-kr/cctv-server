@@ -46,7 +46,8 @@ public class CctvCommandService {
 		cctv.setCctvImage(cctvImageUrl);
 		cctv.setNoticeImage(noticeImageUrl);
 		cctv.setSource(CctvSource.PRIVATE);
-		cctv.setModifiedBy(cctv.getCreatedBy());
+		cctv.setCreatedBy("test-user");
+		cctv.setModifiedBy("test-user");
 		cctv.setCctvName(CctvSource.PRIVATE.name());
 
 		return cctvRepository.save(cctv);
