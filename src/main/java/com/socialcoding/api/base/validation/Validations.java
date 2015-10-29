@@ -9,6 +9,10 @@ public class Validations {
             throw new RuntimeException("No image file attached");
         }
 
+        if (image.getSize() == 0) {
+            throw new RuntimeException("Attached image size is 0");
+        }
+
         if (!image.getContentType().startsWith("image")) {
             throw new RuntimeException("Not image file");
         }
