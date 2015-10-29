@@ -24,6 +24,8 @@ public class ImageService {
 	private AtomicInteger atomicInteger = new AtomicInteger();
 
     public String saveImage(MultipartFile image, String path) {
+		log.debug("image file size: {}", image.getSize());
+
 		try {
 			BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
 			BufferedImage resized = resizeImage(bufferedImage);
@@ -32,7 +34,7 @@ public class ImageService {
 			ImageIO.write(resized, FilenameUtils.getExtension(filePath), new File(filePath));
 			log.debug("image saved: {}", filePath);
 			return filename;
-		} catch (IOException | NoSuchAlgorithmException e) {
+		} catch (Exception e) {
 			//TODO exception handling
 			log.error("File save failed", e);
 			throw new RuntimeException("File save failed", e);
