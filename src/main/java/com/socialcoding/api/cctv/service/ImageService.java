@@ -24,9 +24,11 @@ public class ImageService {
 	private AtomicInteger atomicInteger = new AtomicInteger();
 
     public String saveImage(MultipartFile image, String path) {
-		log.debug("image file size: {}", image.getSize());
-
 		try {
+			if (image.getSize() == 0) {
+				throw new RuntimeException("image size is 0");
+			}
+
 			BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
 			BufferedImage resized = resizeImage(bufferedImage);
 			String filename = genFilename(image);
