@@ -37,4 +37,9 @@ public class CctvQueryService {
 	public List<Cctv> listCctvBetween(Position southWest, Position northEast) {
 		return cctvRepository.findAllBetweenPosition(southWest, northEast);
 	}
+
+	public long countCctvBetween(Position southWest, Position northEast) {
+		return cctvRepository.countAllBetweenPosition(southWest, northEast);
+	}
+
 }

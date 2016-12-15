@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CctvRepositoryCustom {
     List<Cctv> findAllBetweenPosition(Position lower, Position upper);
+
+	long countAllBetweenPosition(Position lower, Position upper);
 }

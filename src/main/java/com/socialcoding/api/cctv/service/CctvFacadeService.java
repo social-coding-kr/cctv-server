@@ -70,4 +70,11 @@ public class CctvFacadeService {
         result.setCctvId(cctv.getCctvId());
         return result;
     }
+
+	public MapCctvCountResult countCctvBetween(MapPositionForm positions) {
+		Position southWest = Position.of(positions.getSouth(), positions.getWest());
+		Position northEast = Position.of(positions.getNorth(), positions.getEast());
+    	long count = cctvQueryService.countCctvBetween(southWest, northEast);
+    	return MapCctvCountResult.success(count);
+	}
 }

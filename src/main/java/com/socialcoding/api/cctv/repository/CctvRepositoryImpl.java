@@ -21,4 +21,12 @@ public class CctvRepositoryImpl extends QueryDslRepositorySupport implements Cct
                 .where(cctv.longitude.goe(lower.getLongitude()).and(cctv.longitude.loe(upper.getLongitude()))) //
                 .list(cctv);
     }
+
+	@Override
+	public long countAllBetweenPosition(Position lower, Position upper) {
+		return from(cctv) //
+			.where(cctv.latitude.goe(lower.getLatitude()).and(cctv.latitude.loe(upper.getLatitude()))) //
+			.where(cctv.longitude.goe(lower.getLongitude()).and(cctv.longitude.loe(upper.getLongitude())))
+			.count();
+	}
 }

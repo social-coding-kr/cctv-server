@@ -1,6 +1,7 @@
 package com.socialcoding.api.cctv.controller;
 
 import com.socialcoding.api.cctv.dto.request.MapPositionForm;
+import com.socialcoding.api.cctv.dto.response.MapCctvCountResult;
 import com.socialcoding.api.cctv.dto.response.MapCctvResult;
 import com.socialcoding.api.cctv.service.CctvFacadeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,4 +20,10 @@ public class CctvMapController {
     public MapCctvResult getCctvs(@Valid MapPositionForm positions) {
         return cctvFacadeService.listCctvBetween(positions);
     }
+
+    @RequestMapping(value = "/map/cctvs/counts", method = RequestMethod.GET)
+	public MapCctvCountResult getCctvCounts(@Valid MapPositionForm positions) {
+		return cctvFacadeService.countCctvBetween(positions);
+	}
+
 }
