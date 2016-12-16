@@ -22,3 +22,4 @@ project/
 target/
 tmp
 cctv-server.pid
+logs/*
